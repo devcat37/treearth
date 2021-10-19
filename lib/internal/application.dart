@@ -15,21 +15,26 @@ class Application extends StatelessWidget {
     return MaterialApp(
       title: Settings.appName,
       theme: ThemeData(
+        fontFamily: 'Raleway',
+        scaffoldBackgroundColor: whiteColor,
         textTheme: TextTheme(
           headline3: TextStyle(color: blackColor, fontSize: 24.0, fontWeight: FontWeight.bold),
+          subtitle1: TextStyle(color: blackColor, fontSize: 18.0, fontWeight: FontWeight.w500),
         ),
       ),
-      // initialRoute: SplashScreen.routeName,
+      initialRoute: SplashScreen.routeName,
       onGenerateRoute: (routeSettings) {
         Route? route;
         switch (routeSettings.name) {
           case SplashScreen.routeName:
             route = MaterialPageRoute(builder: (context) => const SplashScreen());
             break;
+          case Workspace.routeName:
+            route = MaterialPageRoute(builder: (context) => const Workspace());
+            break;
         }
         return route;
       },
-      home: Workspace(),
     );
   }
 }

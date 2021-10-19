@@ -12,11 +12,13 @@ class TreeAppBar extends StatefulWidget implements PreferredSizeWidget {
     required this.title,
     this.backgroundColor = Colors.transparent,
     this.contentColor = blackColor,
+    this.actions,
   }) : super(key: key);
 
   final String title;
   final Color? backgroundColor;
   final Color? contentColor;
+  final List<Widget>? actions;
 
   @override
   _TreeAppBarState createState() => _TreeAppBarState();
@@ -26,11 +28,14 @@ class TreeAppBar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _TreeAppBarState extends State<TreeAppBar> {
+  static const _appBarHeroTag = 'AppBarHeroTag';
+
   Widget _buildRowWrapper(BuildContext context, {Widget? child}) {
     return Container(
       height: kToolbarHeight * 2,
+      color: widget.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       child: Padding(
-        padding: const EdgeInsets.only(left: sidePadding, bottom: sidePadding12),
+        padding: const EdgeInsets.only(left: sidePadding, bottom: sidePadding12, right: sidePadding),
         child: child,
       ),
     );
@@ -39,9 +44,12 @@ class _TreeAppBarState extends State<TreeAppBar> {
   Widget _buildBackButton(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          TreeIcons.left_md,
-          color: widget.contentColor,
+        InkResponse(
+          onTap: () => pop(context),
+          child: Icon(
+            TreeIcons.left_md,
+            color: widget.contentColor,
+          ),
         ),
         const SizedBox(width: sidePadding16),
       ],
@@ -54,11 +62,23 @@ class _TreeAppBarState extends State<TreeAppBar> {
       context,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (canPop(context)) _buildBackButton(context),
-          Text(
-            widget.title,
-            style: Theme.of(context).textTheme.headline3?.copyWith(color: widget.contentColor),
+          Row(
+            children: [
+              if (canPop(context)) _buildBackButton(context),
+              Hero(
+                tag: _appBarHeroTag,
+                child: Text(
+                  widget.title,
+                  style: Theme.of(context).textTheme.headline3?.copyWith(color: widget.contentColor),
+                ),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: widget.actions ?? [],
           ),
         ],
       ),

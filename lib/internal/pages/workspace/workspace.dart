@@ -12,6 +12,8 @@ import 'package:treearth/presentation/global/icons/tree_icons.dart';
 class Workspace extends StatefulWidget {
   const Workspace({Key? key}) : super(key: key);
 
+  static const routeName = '/workspace';
+
   @override
   _WorkspaceState createState() => _WorkspaceState();
 }

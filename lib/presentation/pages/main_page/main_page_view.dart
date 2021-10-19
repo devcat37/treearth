@@ -2,7 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:treearth/internal/services/helpers.dart';
+import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
+import 'package:treearth/presentation/global/icons/tree_icon.dart';
+import 'package:treearth/presentation/global/icons/tree_icons.dart';
 
 class MainPageView extends StatefulWidget {
   const MainPageView({Key? key}) : super(key: key);
@@ -12,11 +16,29 @@ class MainPageView extends StatefulWidget {
 }
 
 class _MainPageViewState extends State<MainPageView> {
+  Widget _buildNotificationsButton(BuildContext context) {
+    return TreeIcon(
+      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => Scaffold(
+                appBar: TreeAppBar(
+                  title: 'Уведомления',
+                ),
+              ))),
+      icon: TreeIcons.notifications,
+      size: sidePadding28,
+      // Искуственно поворачивает иконку уведомлений на 15 градусов.
+      rotationAngle: degreeToRadian(15),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TreeAppBar(
         title: 'Главная',
+        actions: [
+          _buildNotificationsButton(context),
+        ],
       ),
     );
   }
