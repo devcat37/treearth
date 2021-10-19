@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:treearth/internal/pages/splash_screen/splash_screen.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/settings.dart';
+import 'package:treearth/internal/utils/infrastructure.dart';
 
 class Application extends StatelessWidget {
   const Application({Key? key}) : super(key: key);
@@ -13,6 +14,11 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: Settings.appName,
+      theme: ThemeData(
+        textTheme: TextTheme(
+          headline3: TextStyle(color: blackColor, fontSize: 24.0, fontWeight: FontWeight.bold),
+        ),
+      ),
       // initialRoute: SplashScreen.routeName,
       onGenerateRoute: (routeSettings) {
         Route? route;

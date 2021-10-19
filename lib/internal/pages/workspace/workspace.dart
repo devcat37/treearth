@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart' hide BottomAppBar;
 
 // Project imports:
+import 'package:treearth/internal/pages/main_page/main_page.dart';
+import 'package:treearth/internal/pages/profile_page/profile_page.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/botom_app_bar_item.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/bottom_app_bar.dart';
@@ -22,13 +24,14 @@ class _WorkspaceState extends State<Workspace> {
 
   Map<BottomAppBarItem, Widget> itemToPage(BuildContext context) {
     return {
+      // Страница главная.
       BottomAppBarItem(
         icon: TreeIcons.lotus,
         activeIcon: TreeIcons.so_lotus,
         activeColor: lightGreenColor,
-      ): Scaffold(
-        backgroundColor: lightGreenColor,
-      ),
+      ): const MainPage(),
+
+      // Страница с картой объектов.
       BottomAppBarItem(
         icon: TreeIcons.earth,
         activeIcon: TreeIcons.so_earth,
@@ -36,6 +39,8 @@ class _WorkspaceState extends State<Workspace> {
       ): Scaffold(
         backgroundColor: lightBlueColor,
       ),
+
+      // Страница пока хз TODO!
       BottomAppBarItem(
         icon: TreeIcons.map,
         activeIcon: TreeIcons.so_map,
@@ -43,13 +48,13 @@ class _WorkspaceState extends State<Workspace> {
       ): Scaffold(
         backgroundColor: lightOrangeColor,
       ),
+
+      // Страница профиля.
       BottomAppBarItem(
         icon: TreeIcons.person,
         activeIcon: TreeIcons.so_person,
         activeColor: lightPurpleColor,
-      ): Scaffold(
-        backgroundColor: lightPurpleColor,
-      ),
+      ): const ProfilePage(),
     };
   }
 
