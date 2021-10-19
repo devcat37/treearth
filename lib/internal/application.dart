@@ -1,5 +1,9 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:treearth/internal/pages/splash_screen/splash_screen.dart';
+import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/settings.dart';
 
 class Application extends StatelessWidget {
@@ -9,7 +13,7 @@ class Application extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: Settings.appName,
-      initialRoute: SplashScreen.routeName,
+      // initialRoute: SplashScreen.routeName,
       onGenerateRoute: (routeSettings) {
         Route? route;
         switch (routeSettings.name) {
@@ -17,9 +21,9 @@ class Application extends StatelessWidget {
             route = MaterialPageRoute(builder: (context) => const SplashScreen());
             break;
         }
-
         return route;
       },
+      home: Workspace(),
     );
   }
 }

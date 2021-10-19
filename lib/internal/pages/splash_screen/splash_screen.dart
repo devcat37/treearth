@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'package:treearth/presentation/pages/splash_screen/splash_screen_view.dart';
 
 class SplashScreen extends StatelessWidget {
