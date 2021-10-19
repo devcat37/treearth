@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 const whiteColor = Color(0xFFFFFFFF);
 const lightGreyColor = Color(0xFFDADADA);
 
+const lightGreenColor = Color(0xFFA6D331);
+const lightBlueColor = Color(0xFF85C4FF);
+const lightOrangeColor = Color(0xFFFFB673);
+const lightPurpleColor = Color(0xFFB66DFF);
+
 // Paddings.
 const sidePadding = sidePadding24;
 const sidePadding18 = 18.0;

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart' hide BottomAppBar;
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/botom_app_bar_item.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/bottom_app_bar.dart';
+import 'package:treearth/presentation/global/icons/tree_icons.dart';
 
 class Workspace extends StatefulWidget {
   const Workspace({Key? key}) : super(key: key);
@@ -21,17 +22,33 @@ class _WorkspaceState extends State<Workspace> {
 
   Map<BottomAppBarItem, Widget> itemToPage(BuildContext context) {
     return {
-      BottomAppBarItem(icon: Icons.add, activeIcon: Icons.ac_unit): Scaffold(
-        backgroundColor: Colors.red,
+      BottomAppBarItem(
+        icon: TreeIcons.lotus,
+        activeIcon: TreeIcons.so_lotus,
+        activeColor: lightGreenColor,
+      ): Scaffold(
+        backgroundColor: lightGreenColor,
       ),
-      BottomAppBarItem(icon: Icons.home, activeIcon: Icons.ac_unit_sharp): Scaffold(
-        backgroundColor: Colors.green,
+      BottomAppBarItem(
+        icon: TreeIcons.earth,
+        activeIcon: TreeIcons.so_earth,
+        activeColor: lightBlueColor,
+      ): Scaffold(
+        backgroundColor: lightBlueColor,
       ),
-      BottomAppBarItem(icon: Icons.home, activeIcon: Icons.ac_unit_sharp): Scaffold(
-        backgroundColor: Colors.blue,
+      BottomAppBarItem(
+        icon: TreeIcons.map,
+        activeIcon: TreeIcons.so_map,
+        activeColor: lightOrangeColor,
+      ): Scaffold(
+        backgroundColor: lightOrangeColor,
       ),
-      BottomAppBarItem(icon: Icons.home, activeIcon: Icons.ac_unit_sharp): Scaffold(
-        backgroundColor: Colors.yellow,
+      BottomAppBarItem(
+        icon: TreeIcons.person,
+        activeIcon: TreeIcons.so_person,
+        activeColor: lightPurpleColor,
+      ): Scaffold(
+        backgroundColor: lightPurpleColor,
       ),
     };
   }

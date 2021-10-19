@@ -9,12 +9,14 @@ class BottomAppBarItem extends StatefulWidget {
     Key? key,
     required this.icon,
     required this.activeIcon,
+    this.activeColor = lightGreenColor,
   }) : super(key: key);
 
   static const double defaultWidth = 28.0;
 
   final IconData icon;
   final IconData activeIcon;
+  final Color activeColor;
 
   bool _isActive = false;
   bool get isActive => _isActive;
@@ -33,7 +35,7 @@ class _BottomAppBarItemState extends State<BottomAppBarItem> {
     return Icon(
       isActive ? widget.activeIcon : widget.icon,
       size: BottomAppBarItem.defaultWidth,
-      color: isActive ? Colors.blue : lightGreyColor,
+      color: isActive ? widget.activeColor : lightGreyColor,
     );
   }
 }
