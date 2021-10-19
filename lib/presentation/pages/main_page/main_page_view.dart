@@ -7,6 +7,8 @@ import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/icons/tree_icon.dart';
 import 'package:treearth/presentation/global/icons/tree_icons.dart';
+import 'package:treearth/presentation/widgets/main_page/banners/tree_banner_widget.dart';
+import 'package:treearth/presentation/widgets/main_page/banners/tree_banners.dart';
 
 class MainPageView extends StatefulWidget {
   const MainPageView({Key? key}) : super(key: key);
@@ -39,6 +41,22 @@ class _MainPageViewState extends State<MainPageView> {
         actions: [
           _buildNotificationsButton(context),
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              const SizedBox(height: sidePadding8),
+              TreeBanners(
+                banners: [
+                  TreeBannerWidget(),
+                  TreeBannerWidget(),
+                  TreeBannerWidget(),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -12,12 +12,15 @@ const lightPurpleColor = Color(0xFFB66DFF);
 
 const semiDarkGreenColor = Color(0xFF8BB72D);
 
+const darkGreyColor = Color(0xFF5D5A58);
+
 const greenGradient1 = [lightGreenColor, semiDarkGreenColor];
 
 // Paddings.
 const sidePadding = sidePadding24;
 const sidePadding6 = 6.0;
 const sidePadding8 = 8.0;
+const sidePadding10 = 10.0;
 const sidePadding12 = 12.0;
 const sidePadding16 = 16.0;
 const sidePadding18 = 18.0;
@@ -32,5 +35,6 @@ final borderRadius32 = BorderRadius.circular(32.0);
 const radiusCircular32 = Radius.circular(32.0);
 
 // Durations.
+const defaultAnimationDuration = Duration(milliseconds: 250);
 const halfASecond = Duration(milliseconds: 500);
 const aSecond = Duration(seconds: 1);
