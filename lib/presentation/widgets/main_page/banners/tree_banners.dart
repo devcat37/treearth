@@ -21,7 +21,7 @@ class TreeBanners extends StatefulWidget {
   State<TreeBanners> createState() => _TreeBannersState();
 }
 
-class _TreeBannersState extends State<TreeBanners> {
+class _TreeBannersState extends State<TreeBanners> with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
 
   @override

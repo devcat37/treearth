@@ -36,6 +36,7 @@ class _MainPageViewState extends State<MainPageView> {
               ))),
       icon: TreeIcons.notifications,
       size: sidePadding28,
+
       // Искуственно поворачивает иконку уведомлений на 15 градусов.
       rotationAngle: degreeToRadian(15),
     );
@@ -44,7 +45,7 @@ class _MainPageViewState extends State<MainPageView> {
   Widget _buildBanners(BuildContext context) {
     return Observer(builder: (context) {
       if (bannersState.isLoading) return const TreeBannersSkeleton();
-      final banners = bannersState.banners.map((e) => TreeBannerWidget()).toList();
+      final banners = bannersState.banners.map((e) => TreeBannerWidget(banner: e)).toList();
 
       return TreeBanners(banners: banners);
     });
