@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 // Project imports:
-import 'package:treearth/domain/banner/tree_banner.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/carousel_progress/carousel_progress.dart';
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banner_widget.dart';

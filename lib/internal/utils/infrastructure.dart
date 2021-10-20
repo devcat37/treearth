@@ -14,6 +14,9 @@ const semiDarkGreenColor = Color(0xFF8BB72D);
 
 const darkGreyColor = Color(0xFF5D5A58);
 
+final shimmerBaseColor = Colors.grey.shade100;
+final shimmerHighlightColor = Colors.grey.shade300;
+
 const greenGradient1 = [lightGreenColor, semiDarkGreenColor];
 
 // Paddings.

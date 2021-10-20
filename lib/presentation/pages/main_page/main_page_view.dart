@@ -1,14 +1,20 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:flutter_mobx/flutter_mobx.dart';
+
 // Project imports:
 import 'package:treearth/internal/services/helpers.dart';
+import 'package:treearth/internal/services/service_locator.dart';
+import 'package:treearth/internal/states/banners_state/banners_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/icons/tree_icon.dart';
 import 'package:treearth/presentation/global/icons/tree_icons.dart';
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banner_widget.dart';
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banners.dart';
+import 'package:treearth/presentation/widgets/main_page/banners/tree_banners_skeleton.dart';
 
 class MainPageView extends StatefulWidget {
   const MainPageView({Key? key}) : super(key: key);
@@ -18,6 +24,8 @@ class MainPageView extends StatefulWidget {
 }
 
 class _MainPageViewState extends State<MainPageView> {
+  BannersState get bannersState => service<BannersState>();
+
   Widget _buildNotificationsButton(BuildContext context) {
     return TreeIcon(
       onPressed: () => Navigator.of(context).push(MaterialPageRoute(
@@ -31,6 +39,15 @@ class _MainPageViewState extends State<MainPageView> {
       // Искуственно поворачивает иконку уведомлений на 15 градусов.
       rotationAngle: degreeToRadian(15),
     );
+  }
+
+  Widget _buildBanners(BuildContext context) {
+    return Observer(builder: (context) {
+      if (bannersState.isLoading) return const TreeBannersSkeleton();
+      final banners = bannersState.banners.map((e) => TreeBannerWidget()).toList();
+
+      return TreeBanners(banners: banners);
+    });
   }
 
   @override
@@ -47,13 +64,7 @@ class _MainPageViewState extends State<MainPageView> {
           child: Column(
             children: [
               const SizedBox(height: sidePadding8),
-              TreeBanners(
-                banners: [
-                  TreeBannerWidget(),
-                  TreeBannerWidget(),
-                  TreeBannerWidget(),
-                ],
-              ),
+              _buildBanners(context),
             ],
           ),
         ),
