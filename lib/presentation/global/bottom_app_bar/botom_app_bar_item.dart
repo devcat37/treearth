@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:treearth/internal/utils/infrastructure.dart';
 
+// ignore: must_be_immutable
 class BottomAppBarItem extends StatefulWidget {
   BottomAppBarItem({
     Key? key,
