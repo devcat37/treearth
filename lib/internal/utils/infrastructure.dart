@@ -20,6 +20,8 @@ const darkGreyColor = Color(0xFF5D5A58);
 
 const notificationReadColor = Color(0xFFE39B47);
 
+const buttonTextColor = Color(0xFFCDEA7A);
+
 const notificationTextPositiveColor = Color(0xFF688C1C);
 const notificationTextWarningColor = Color(0xFF635114);
 const notificationTextNegativeColor = Color(0xFF8C231C);
@@ -83,6 +85,8 @@ const sidePadding28 = 28.0;
 const sidePadding32 = 32.0;
 const sidePadding40 = 40.0;
 const sidePadding64 = 64.0;
+
+const defaultKeyboardHeight = 290.0;
 
 // Border radiuses.
 final borderRadius12 = BorderRadius.circular(12.0);
