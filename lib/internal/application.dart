@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
 import 'package:treearth/internal/pages/splash_screen/splash_screen.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/settings.dart';
@@ -20,6 +21,7 @@ class Application extends StatelessWidget {
         textTheme: TextTheme(
           headline3: TextStyle(color: blackColor, fontSize: 24.0, fontWeight: FontWeight.bold),
           subtitle1: TextStyle(color: blackColor, fontSize: 18.0, fontWeight: FontWeight.w500),
+          bodyText2: TextStyle(color: blackColor, fontSize: 12.0, fontWeight: FontWeight.w500),
         ),
       ),
       initialRoute: SplashScreen.routeName,
@@ -31,6 +33,9 @@ class Application extends StatelessWidget {
             break;
           case Workspace.routeName:
             route = MaterialPageRoute(builder: (context) => const Workspace());
+            break;
+          case NotificationsPage.routeName:
+            route = MaterialPageRoute(builder: (context) => const NotificationsPage());
             break;
         }
         return route;

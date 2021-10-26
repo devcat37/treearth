@@ -4,10 +4,12 @@ import 'package:flutter/services.dart';
 
 // Project imports:
 import 'package:treearth/data/repository/banners/banners_repository.dart';
+import 'package:treearth/data/repository/notifications/notifications_repository.dart';
 import 'package:treearth/internal/application.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/banners_state/banners_state.dart';
 import 'package:treearth/internal/states/main_page_state/main_page_state.dart';
+import 'package:treearth/internal/states/notifications_state/notifications_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +17,11 @@ Future<void> main() async {
 
   // Repositories.
   service.registerLazySingleton<BannersRepository>(() => BannersRepository());
+  service.registerLazySingleton<NotificationsRepository>(() => NotificationsRepository());
 
   // States.
   service.registerLazySingleton<BannersState>(() => BannersState());
+  service.registerLazySingleton<NotificationsState>(() => NotificationsState());
   service.registerLazySingleton<MainPageState>(() => MainPageState());
 
   runApp(const Application());
