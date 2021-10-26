@@ -1,3 +1,8 @@
+// Package imports:
+import 'package:mobx/mobx.dart';
+
+part 'notification.g.dart';
+
 enum NotificationType {
   /// Positive type of notification when something was completed successfully.
   ///
@@ -15,8 +20,10 @@ enum NotificationType {
   negative,
 }
 
-class Notification {
-  const Notification({
+class Notification = _NotificationBase with _$Notification;
+
+abstract class _NotificationBase with Store {
+  _NotificationBase({
     required this.id,
     required this.timestamp,
     required this.content,
@@ -37,5 +44,6 @@ class Notification {
   final NotificationType type;
 
   /// Whether the notification is read or not.
-  final bool isRead;
+  @observable
+  bool isRead;
 }

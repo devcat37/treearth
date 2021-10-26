@@ -32,7 +32,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
 
       // Переход на главную страницу или авторизацию в зависимости от состояния.
       // TODO: Убрать задержку на переход на главную страницу.
-      if (isAuthorized)
+      if (!isAuthorized)
         Future.delayed(aSecond * 2, () => goToMainPage(context));
       else
         Future.delayed(aSecond * 2, () => goToAuthorizationSplashPage(context));

@@ -1,8 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:flutter_mobx/flutter_mobx.dart';
+
 // Project imports:
 import 'package:treearth/domain/models/notification/notification.dart' as n;
+import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/icons/tree_icons.dart';
 import 'package:treearth/presentation/global/notifications/notification_read.dart';
@@ -124,8 +128,23 @@ class TreeNotification extends StatelessWidget {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildNotificationDate(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: sidePadding),
+        child: Text(
+          '${notification.timestamp.day} ${monthToString(notification.timestamp.month)}, ${notification.timestamp.hour}:${notification.timestamp.minute}',
+          style: Theme.of(context)
+              .textTheme
+              .bodyText2!
+              .copyWith(fontSize: 10.0, fontFamily: 'Inter', color: lightGreyColor),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNotificationContainer(BuildContext context) {
     return Container(
       height: defaultHeight + NotificationRead.defaultSize / 3,
       width: MediaQuery.of(context).size.width,
@@ -133,7 +152,6 @@ class TreeNotification extends StatelessWidget {
       child: Stack(
         alignment: Alignment.topRight,
         children: [
-          if (!notification.isRead) NotificationRead(),
           Align(
             alignment: Alignment.bottomCenter,
             child: InkWell(
@@ -155,8 +173,22 @@ class TreeNotification extends StatelessWidget {
               ),
             ),
           ),
+          Observer(
+            builder: (_) => !notification.isRead ? NotificationRead() : const SizedBox.shrink(),
+          ),
         ],
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _buildNotificationContainer(context),
+        const SizedBox(height: sidePadding4),
+        _buildNotificationDate(context),
+      ],
     );
   }
 }

@@ -74,6 +74,7 @@ const greenGradient1 = [lightGreenColor, semiDarkGreenColor];
 
 // Paddings.
 const sidePadding = sidePadding24;
+const sidePadding4 = 4.0;
 const sidePadding6 = 6.0;
 const sidePadding8 = 8.0;
 const sidePadding10 = 10.0;
