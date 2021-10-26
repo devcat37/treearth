@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 // Project imports:
+import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/banners_state/banners_state.dart';
@@ -28,12 +29,7 @@ class _MainPageViewState extends State<MainPageView> {
 
   Widget _buildNotificationsButton(BuildContext context) {
     return TreeIcon(
-      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => Scaffold(
-                appBar: TreeAppBar(
-                  title: 'Уведомления',
-                ),
-              ))),
+      onPressed: () => goToNotificationsPage(context),
       icon: TreeIcons.notifications,
       size: sidePadding28,
 

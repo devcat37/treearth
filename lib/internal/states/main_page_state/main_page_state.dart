@@ -5,6 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/banners_state/banners_state.dart';
 import 'package:treearth/internal/states/interfaces/initializable.dart';
+import 'package:treearth/internal/states/notifications_state/notifications_state.dart';
 
 part 'main_page_state.g.dart';
 
@@ -15,6 +16,7 @@ abstract class _MainPageStateBase with Store implements Initializable {
   Future<void> initialize() async {
     Future.wait([
       service<BannersState>().initialize(),
+      service<NotificationsState>().initialize(),
     ]);
   }
 }

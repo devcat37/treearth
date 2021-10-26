@@ -4,6 +4,8 @@ import 'package:flutter/material.dart' hide BottomAppBar;
 // Project imports:
 import 'package:treearth/internal/pages/main_page/main_page.dart';
 import 'package:treearth/internal/pages/profile_page/profile_page.dart';
+import 'package:treearth/internal/services/service_locator.dart';
+import 'package:treearth/internal/states/main_page_state/main_page_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/botom_app_bar_item.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/bottom_app_bar.dart';
@@ -23,6 +25,14 @@ class _WorkspaceState extends State<Workspace> {
 
   final PageController _pageController = PageController(initialPage: _initialPage);
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    // Инициализация стейта главной страницы (баннеры и т.д).
+    service<MainPageState>().initialize();
+
+    super.initState();
+  }
 
   Map<BottomAppBarItem, Widget> itemToPage(BuildContext context) {
     return {

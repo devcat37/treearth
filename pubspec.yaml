@@ -34,10 +34,12 @@ dependencies:
     sdk: flutter
 
   flutter_mobx: ^2.0.1
+  flutter_secure_storage: ^4.2.1
   flutter_svg: ^0.22.0
   get_it: ^7.0.0
   mobx: ^2.0.3
   shimmer: ^2.0.0
+  uuid: ^3.0.5
 
 dev_dependencies:
 

@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:treearth/domain/models/banner/tree_banner.dart';
 
 // Project imports:
+import 'package:treearth/domain/models/banner/tree_banner.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 
 class TreeBannerWidget extends StatelessWidget {
