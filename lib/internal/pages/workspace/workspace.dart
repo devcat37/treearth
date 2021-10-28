@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' hide BottomAppBar;
 
 // Project imports:
 import 'package:treearth/internal/pages/main_page/main_page.dart';
+import 'package:treearth/internal/pages/planet_page/planet_page.dart';
 import 'package:treearth/internal/pages/profile_page/profile_page.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/main_page_state/main_page_state.dart';
@@ -48,9 +49,7 @@ class _WorkspaceState extends State<Workspace> {
         icon: TreeIcons.earth,
         activeIcon: TreeIcons.so_earth,
         activeColor: lightBlueColor,
-      ): Scaffold(
-        backgroundColor: lightBlueColor,
-      ),
+      ): const PlanetPage(),
 
       // Страница пока хз TODO!
       BottomAppBarItem(
