@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Project imports:
+import 'package:treearth/data/repository/auth/auth_repository.dart';
 import 'package:treearth/data/repository/banners/banners_repository.dart';
 import 'package:treearth/data/repository/notifications/notifications_repository.dart';
 import 'package:treearth/internal/application.dart';
@@ -19,9 +20,11 @@ Future<void> main() async {
 
   Settings settings = Settings();
   await settings.initStorage();
+  await settings.initFirebase();
   service.registerSingleton<Settings>(settings);
 
   // Repositories.
+  service.registerLazySingleton<AuthRepository>(() => AuthRepository());
   service.registerLazySingleton<BannersRepository>(() => BannersRepository());
   service.registerLazySingleton<NotificationsRepository>(() => NotificationsRepository());
 

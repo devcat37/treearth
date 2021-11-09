@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:treearth/internal/pages/authorization_page/authorization_page.dart';
 import 'package:treearth/internal/pages/authorization_splash/authorization_splash.dart';
+import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
+import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
 import 'package:treearth/internal/pages/splash_screen/splash_screen.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/settings.dart';
@@ -46,6 +48,11 @@ class Application extends StatelessWidget {
           case NotificationsPage.routeName:
             route = MaterialPageRoute(builder: (context) => const NotificationsPage());
             break;
+          case PhoneNumberPage.routeName:
+            route = MaterialPageRoute(builder: (context) => const PhoneNumberPage());
+            break;
+          case ConfirmNumberPage.routeName:
+            route = MaterialPageRoute(builder: (context) => const ConfirmNumberPage());
         }
         return route;
       },

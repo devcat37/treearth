@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Settings {
@@ -13,6 +14,10 @@ class Settings {
   Future initStorage() async {
     _storage = const FlutterSecureStorage();
     _secureValues = await _storage.readAll();
+  }
+
+  Future initFirebase() async {
+    await Firebase.initializeApp();
   }
 
   String get accessToken => _secureValues[accessTokenKey] ?? '';
