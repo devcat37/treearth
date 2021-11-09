@@ -71,38 +71,40 @@ class _WorkspaceState extends State<Workspace> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: _pageController,
-            children: itemToPage(context).values.toList(),
-          ),
-          BottomAppBar(
-            currentIndex: _currentIndex,
-            items: itemToPage(context).keys.toList(),
-            onPressed: (index) {
-              if (index != _currentIndex) {
-                setState(() {
-                  if ((_currentIndex - index).abs() > 1) {
-                    _pageController.jumpToPage(index);
-                  } else {
-                    _pageController.animateToPage(
-                      index,
-                      duration: halfASecond * 0.5,
-                      curve: Curves.decelerate,
-                    );
-                  }
+    return WillPopScope(
+        child: Scaffold(
+          body: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              PageView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _pageController,
+                children: itemToPage(context).values.toList(),
+              ),
+              BottomAppBar(
+                currentIndex: _currentIndex,
+                items: itemToPage(context).keys.toList(),
+                onPressed: (index) {
+                  if (index != _currentIndex) {
+                    setState(() {
+                      if ((_currentIndex - index).abs() > 1) {
+                        _pageController.jumpToPage(index);
+                      } else {
+                        _pageController.animateToPage(
+                          index,
+                          duration: halfASecond * 0.5,
+                          curve: Curves.decelerate,
+                        );
+                      }
 
-                  _currentIndex = index;
-                });
-              }
-            },
+                      _currentIndex = index;
+                    });
+                  }
+                },
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        ),
+        onWillPop: () async => false);
   }
 }
