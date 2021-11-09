@@ -36,3 +36,11 @@ String monthToString(int month) {
       return 'Января';
   }
 }
+
+String generateNDigitsCode(int digits) {
+  String code = '';
+  for (int i = 0; i < digits; i++) {
+    code += '${Random().nextInt(10)}';
+  }
+  return code;
+}

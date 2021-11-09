@@ -9,15 +9,17 @@ import 'package:treearth/presentation/global/icons/tree_icons.dart';
 class TreeAppBar extends StatefulWidget implements PreferredSizeWidget {
   const TreeAppBar({
     Key? key,
-    required this.title,
+    this.title,
     this.backgroundColor = Colors.transparent,
     this.contentColor = blackColor,
     this.actions,
+    this.canPop = true,
   }) : super(key: key);
 
-  final String title;
+  final String? title;
   final Color? backgroundColor;
   final Color? contentColor;
+  final bool canPop;
   final List<Widget>? actions;
 
   @override
@@ -35,7 +37,7 @@ class _TreeAppBarState extends State<TreeAppBar> {
       height: kToolbarHeight * 1.5,
       color: widget.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       child: Padding(
-        padding: const EdgeInsets.only(left: sidePadding, bottom: sidePadding12, right: sidePadding),
+        padding: const EdgeInsets.only(left: sidePadding, right: sidePadding),
         child: child,
       ),
     );
@@ -66,14 +68,15 @@ class _TreeAppBarState extends State<TreeAppBar> {
         children: [
           Row(
             children: [
-              if (canPop(context)) _buildBackButton(context),
-              Hero(
-                tag: _appBarHeroTag,
-                child: Text(
-                  widget.title,
-                  style: Theme.of(context).textTheme.headline3?.copyWith(color: widget.contentColor),
-                ),
-              )
+              if (canPop(context) && widget.canPop) _buildBackButton(context),
+              if (widget.title != null)
+                Hero(
+                  tag: _appBarHeroTag,
+                  child: Text(
+                    widget.title!,
+                    style: Theme.of(context).textTheme.headline3?.copyWith(color: widget.contentColor),
+                  ),
+                )
             ],
           ),
           Row(

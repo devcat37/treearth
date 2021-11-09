@@ -3,7 +3,6 @@ import 'package:mobx/mobx.dart';
 
 // Project imports:
 import 'package:treearth/data/repository/auth/auth_repository.dart';
-import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/services/settings.dart';
 
@@ -31,7 +30,7 @@ abstract class _AuthStateBase with Store {
   @action
   Future<bool> signInWithPhoneNumber() async {
     // Получение номера телефона пользователя и подтверждение его на pin-странице.
-
+    return true;
     return await authorize();
   }
 

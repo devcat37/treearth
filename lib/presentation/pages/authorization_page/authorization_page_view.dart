@@ -6,6 +6,7 @@ import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/auth_state/auth_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
+import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/tree_button/tree_button.dart';
 import 'package:treearth/presentation/global/tree_input/tree_input.dart';
 
@@ -21,7 +22,11 @@ class AuthorizationPageView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           TreeButton(
-            onPressed: () => authState.signInWithGoogle(),
+            onPressed: () async {
+              final authResult = await authState.signInWithGoogle();
+
+              if (authResult) goToMainPage(context);
+            },
             width: MediaQuery.of(context).size.width - sidePadding32 * 2,
             // TODO: Добавить икноку гугла в название.
             title: 'Google',
@@ -30,7 +35,15 @@ class AuthorizationPageView extends StatelessWidget {
           const SizedBox(height: sidePadding18),
           TreeButton.outlined(
             onPressed: () async {
-              await goToPhoneNumberPage(context);
+              final result = await goToPhoneNumberPage(
+                context,
+                // Авторизация с помощью номера телефона, если введенный номер подтвержден по СМС.
+                onSuccessfulConfirmation: (phone) async {
+                  final authResult = await authState.signInWithPhoneNumber();
+
+                  if (authResult) goToMainPage(context);
+                },
+              );
             },
             width: MediaQuery.of(context).size.width - sidePadding32 * 2,
             title: 'Номер телефона',

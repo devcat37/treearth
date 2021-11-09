@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 
 // Project imports:
 import 'package:treearth/internal/utils/infrastructure.dart';
-import 'package:treearth/presentation/global/gradient_text/gradient_text.dart';
 import 'package:treearth/presentation/global/pin_code_field/pin_code_number.dart';
 import 'package:treearth/presentation/global/pin_controller/pin_controller.dart';
 
@@ -13,10 +12,12 @@ class PinCodeField extends StatefulWidget {
     Key? key,
     this.length = 4,
     this.controller,
+    this.onComplete,
   }) : super(key: key);
 
   final int length;
   final PinController? controller;
+  final Function(String)? onComplete;
 
   @override
   State<PinCodeField> createState() => _PinCodeFieldState();
@@ -26,7 +27,9 @@ class _PinCodeFieldState extends State<PinCodeField> {
   @override
   void initState() {
     widget.controller?.addListener(() {
-      setState(() {});
+      if (mounted) setState(() {});
+      if (widget.controller?.pin?.length == widget.controller?.length && widget.onComplete != null)
+        widget.onComplete!(widget.controller?.pin ?? '');
     });
 
     super.initState();

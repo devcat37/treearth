@@ -11,6 +11,7 @@ class TreeInput extends StatelessWidget {
     this.hintText,
     this.width,
     this.autoFocus = false,
+    this.controller,
     this.keyboardType = TextInputType.name,
   }) : super(key: key);
 
@@ -22,6 +23,7 @@ class TreeInput extends StatelessWidget {
   final String? hintText;
   final bool autoFocus;
   final TextInputType? keyboardType;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,7 @@ class TreeInput extends StatelessWidget {
           child: TextFormField(
             keyboardType: keyboardType,
             autofocus: autoFocus,
+            controller: controller,
             style: Theme.of(context).textTheme.headline3!.copyWith(fontWeight: FontWeight.w400, fontFamily: 'Inter'),
             cursorColor: lightGreenColor,
             cursorHeight: 28.0,

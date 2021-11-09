@@ -33,6 +33,7 @@ class _PlanetPageViewState extends State<PlanetPageView> {
     return Scaffold(
       appBar: TreeAppBar(
         title: 'Планета',
+        canPop: false,
       ),
       body: Stack(
         children: [
