@@ -1,10 +1,15 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:phone_number/phone_number.dart';
+
 // Project imports:
 import 'package:treearth/internal/pages/authorization_page/authorization_page.dart';
 import 'package:treearth/internal/pages/authorization_splash/authorization_splash.dart';
+import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
+import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
 import 'package:treearth/internal/pages/splash_screen/splash_screen.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/settings.dart';
@@ -23,6 +28,7 @@ class Application extends StatelessWidget {
         textTheme: TextTheme(
           headline3: TextStyle(color: blackColor, fontSize: 24.0, fontWeight: FontWeight.bold),
           subtitle1: TextStyle(color: blackColor, fontSize: 18.0, fontWeight: FontWeight.w500),
+          bodyText1: TextStyle(color: blackColor, fontSize: 14.0, fontWeight: FontWeight.w500),
           bodyText2: TextStyle(color: blackColor, fontSize: 12.0, fontWeight: FontWeight.w500),
           button: TextStyle(color: blackColor, fontSize: 14.0, fontWeight: FontWeight.bold),
         ),
@@ -46,6 +52,15 @@ class Application extends StatelessWidget {
           case NotificationsPage.routeName:
             route = MaterialPageRoute(builder: (context) => const NotificationsPage());
             break;
+          case PhoneNumberPage.routeName:
+            route = MaterialPageRoute(
+              builder: (context) => PhoneNumberPage(
+                onSuccessfulConfirmation: routeSettings.arguments as Function(PhoneNumber)?,
+              ),
+            );
+            break;
+          case ConfirmNumberPage.routeName:
+            route = MaterialPageRoute(builder: (context) => const ConfirmNumberPage());
         }
         return route;
       },

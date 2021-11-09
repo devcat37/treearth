@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 const whiteColor = Color(0xFFFFFFFF);
 const blackColor = Color(0xFF000000);
 const lightGreyColor = Color(0xFFDADADA);
+const greyTextColor = Color(0xFFC6C6C6);
+const surfaceGreyColor = Color(0xFFF9F9F9);
 
 const lightGreenColor = Color(0xFFA6D331);
 const lightYellowColor = Color(0xFFFAE315);
@@ -75,6 +77,7 @@ const greenGradient1 = [lightGreenColor, semiDarkGreenColor];
 // Paddings.
 const sidePadding = sidePadding24;
 const sidePadding4 = 4.0;
+const sidePadding5 = 5.0;
 const sidePadding6 = 6.0;
 const sidePadding8 = 8.0;
 const sidePadding10 = 10.0;
@@ -85,6 +88,7 @@ const sidePadding24 = 24.0;
 const sidePadding28 = 28.0;
 const sidePadding32 = 32.0;
 const sidePadding40 = 40.0;
+const sidePadding48 = 48.0;
 const sidePadding64 = 64.0;
 
 const defaultKeyboardHeight = 290.0;
@@ -97,6 +101,7 @@ final borderRadius32 = BorderRadius.circular(32.0);
 const radiusCircular32 = Radius.circular(32.0);
 
 // Durations.
+/// Стандартная продолжительность анимации. Равно 250мс.
 const defaultAnimationDuration = Duration(milliseconds: 250);
 const halfASecond = Duration(milliseconds: 500);
 const aSecond = Duration(seconds: 1);

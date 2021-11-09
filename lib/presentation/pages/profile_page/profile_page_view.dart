@@ -17,6 +17,7 @@ class _ProfilePageViewState extends State<ProfilePageView> {
     return Scaffold(
       appBar: TreeAppBar(
         title: 'Профиль',
+        canPop: false,
       ),
     );
   }

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "220697062185",
+    "project_id": "treearth-c240b",
+    "storage_bucket": "treearth-c240b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220697062185:android:ad243aba5577e41daae538",
+        "android_client_info": {
+          "package_name": "com.genicat.treearth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220697062185-27oeokil7o6f1crbf15elo2l62vdd3r5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB24hr51GYYllnlsC4aoRVP6Pc1fB7N7mE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220697062185-27oeokil7o6f1crbf15elo2l62vdd3r5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "220697062185-8so39lbvoemqb6cpmbct8fk2goolg04o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.genicat.treearth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
