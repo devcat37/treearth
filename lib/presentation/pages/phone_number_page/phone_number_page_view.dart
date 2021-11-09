@@ -26,7 +26,7 @@ class PhoneNumberPageView extends StatelessWidget {
       title: 'Телефон',
       hintText: 'Введите номер',
       autoFocus: true,
-      keyboardType: TextInputType.number,
+      keyboardType: TextInputType.phone,
     );
   }
 

@@ -101,6 +101,7 @@ final borderRadius32 = BorderRadius.circular(32.0);
 const radiusCircular32 = Radius.circular(32.0);
 
 // Durations.
+/// Стандартная продолжительность анимации. Равно 250мс.
 const defaultAnimationDuration = Duration(milliseconds: 250);
 const halfASecond = Duration(milliseconds: 500);
 const aSecond = Duration(seconds: 1);

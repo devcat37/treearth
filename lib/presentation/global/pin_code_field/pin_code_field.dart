@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 // Project imports:
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/gradient_text/gradient_text.dart';
+import 'package:treearth/presentation/global/pin_code_field/pin_code_number.dart';
 import 'package:treearth/presentation/global/pin_controller/pin_controller.dart';
 
 class PinCodeField extends StatefulWidget {
@@ -24,7 +25,18 @@ class PinCodeField extends StatefulWidget {
 class _PinCodeFieldState extends State<PinCodeField> {
   @override
   void initState() {
+    widget.controller?.addListener(() {
+      setState(() {});
+    });
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    widget.controller?.removeListener(() {});
+
+    super.dispose();
   }
 
   Widget _buildField(BuildContext context) {
@@ -44,14 +56,7 @@ class _PinCodeFieldState extends State<PinCodeField> {
 
   Widget _buildNumber(BuildContext context, String value) {
     return Center(
-      child: GradientText(
-        value,
-        gradient: LinearGradient(colors: [lightGreenColor, semiDarkGreenColor]),
-        style: TextStyle(
-          fontSize: (4 / widget.length) * sidePadding48,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
+      child: PinCodeNumber(value, size: (4 / widget.length) * sidePadding48),
     );
   }
 
@@ -64,14 +69,15 @@ class _PinCodeFieldState extends State<PinCodeField> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List.generate(widget.length, (index) {
-          final value =
-              index > (widget.controller?.pin?.length ?? 0) ? '' : widget.controller?.pin?[index].toString() ?? '';
-          print(value);
+          final value = index >= (widget.controller?.pin ?? '').length
+              ? ''
+              : widget.controller?.pin?.split('').elementAt(index) ?? '';
+
           return Stack(
             alignment: Alignment.center,
             children: [
               _buildField(context),
-              _buildNumber(context, value),
+              if (value.isNotEmpty) _buildNumber(context, value),
             ],
           );
         }),

@@ -36,9 +36,6 @@ class _ConfirmNumberPageViewState extends State<ConfirmNumberPageView> {
             ),
             PinEnter(
               controller: controller,
-              onChanged: () {
-                setState(() {});
-              },
             ),
             SizedBox(
               height:

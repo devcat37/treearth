@@ -11,10 +11,12 @@ class PinEnter extends StatelessWidget {
     Key? key,
     this.controller,
     this.onChanged,
+    this.hasBackspace = true,
   }) : super(key: key);
 
   final PinController? controller;
   final Function()? onChanged;
+  final bool hasBackspace;
 
   static const _style = TextStyle(
       color: blackColor, fontSize: sidePadding48, fontFamily: 'Inter', fontWeight: FontWeight.w400, height: 78 / 48);
@@ -26,13 +28,18 @@ class PinEnter extends StatelessWidget {
     );
   }
 
+  Widget _buildBackspace(BuildContext context) {
+    return InkResponse(
+      onTap: controller?.removeLast,
+      child: Icon(Icons.backspace, color: greyTextColor, size: 28.0),
+    );
+  }
+
   Widget _buildNumberPin(BuildContext context, int number) {
     return _buildPin(
       context,
       onPressed: () {
-        if (controller?.pin == null)
-          controller?.pin = number.toString();
-        else if (controller != null) controller!.pin = controller!.pin! + number.toString();
+        controller?.addValue(number.toString());
 
         controller?.onChanged?.call();
         if (onChanged != null) onChanged!();
@@ -82,9 +89,26 @@ class PinEnter extends StatelessWidget {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _buildPin(context, pin: _buildNumberPin(context, 0)),
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: const SizedBox.shrink(),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Center(
+                    child: _buildNumberPin(context, 0),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: _buildBackspace(context),
+                  ),
+                ),
               ],
             ),
           ],
