@@ -9,6 +9,6 @@ class BannersRepository {
   Future<ListLoadResult<TreeBanner>> fetchBanners() async {
     await Future.delayed(aSecond * 4);
 
-    return ListLoadResult(data: [mockBanner1, mockBanner2, mockBanner3]);
+    return ListLoadResult(data: allMockBanners);
   }
 }

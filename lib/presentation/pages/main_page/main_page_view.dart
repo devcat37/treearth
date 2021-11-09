@@ -72,7 +72,7 @@ class _MainPageViewState extends State<MainPageView> {
         child: Container(
           child: Column(
             children: [
-              const SizedBox(height: sidePadding8),
+              const SizedBox(height: sidePadding16),
               _buildBanners(context),
             ],
           ),

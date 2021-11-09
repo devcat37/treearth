@@ -37,7 +37,7 @@ class _TreeAppBarState extends State<TreeAppBar> {
       height: kToolbarHeight * 1.5,
       color: widget.backgroundColor ?? Theme.of(context).scaffoldBackgroundColor,
       child: Padding(
-        padding: const EdgeInsets.only(left: sidePadding, right: sidePadding),
+        padding: const EdgeInsets.only(left: sidePadding, bottom: sidePadding12, right: sidePadding),
         child: child,
       ),
     );
