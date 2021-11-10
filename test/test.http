@@ -1,0 +1,8 @@
+
+### Авторизация.
+POST http://192.168.1.8:443/rest-api/auth/login
+Content-Type: application/json
+
+{
+    "uid": "pzDPlqJy7eM6ZQsaHBMjD0w5K892"
+}

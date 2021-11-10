@@ -8,7 +8,6 @@ import 'package:treearth/domain/repository/load_result.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/services/settings.dart';
 import 'package:treearth/internal/states/user_state/user_state.dart';
-import 'package:treearth/internal/utils/infrastructure.dart';
 
 part 'auth_state.g.dart';
 
@@ -23,20 +22,20 @@ abstract class _AuthStateBase with Store {
   @action
   Future<bool> signInWithGoogle() async {
     // Получаем ID пользователя через репозиторий.
-    final user = await authRepository.signInWithGoogle();
-    if (user == null) return false;
+    final userCredential = await authRepository.signInWithGoogle();
+    if (userCredential?.user == null) return false;
 
-    return await authorize(userId: user.uid);
+    return await authorize(userId: userCredential!.user!.uid, isNew: userCredential.additionalUserInfo?.isNewUser);
   }
 
   // Авторизация с помощью номера телефона.
   @action
   Future<bool> signInWithPhoneNumber() async {
     // Получение номера телефона пользователя и подтверждение его на pin-странице.
-    final user = await authRepository.signInWithPhoneNumber();
-    if (user == null) return false;
+    final userCredential = await authRepository.signInWithPhoneNumber();
+    if (userCredential?.user == null) return false;
 
-    return await authorize(userId: user.uid);
+    return await authorize(userId: userCredential!.user!.uid, isNew: userCredential.additionalUserInfo?.isNewUser);
   }
 
   /// Получение информации от бэкэнда по пользовательскому ID,
@@ -52,7 +51,6 @@ abstract class _AuthStateBase with Store {
 
     // Если пользователь авторизован через firebase, но у него не получается
     // получить информацию от бэкэнда, то его нужно разлогинить.
-    // if (userId.isNotEmpty) return true;
     LoadResult<AuthResultData?> authResult;
     if (isNew == true)
       authResult = await authRepository.register(userId);

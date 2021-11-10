@@ -24,7 +24,7 @@ class AuthRepository {
   );
 
   /// Возвращает пользователя с firebase для дальнейшей авторизации.
-  Future<User?> signInWithGoogle() async {
+  Future<UserCredential?> signInWithGoogle() async {
     // Получение google пользователя с его access токеном.
     GoogleSignInAccount? googleAccount;
     googleAccount = await _googleSignIn.signIn();
@@ -36,13 +36,14 @@ class AuthRepository {
     final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
     // Возвращается ID пользователя.
-    return userCredential.user;
+    return userCredential;
   }
 
-  Future<User?> signInWithPhoneNumber() async {}
+  Future<UserCredential?> signInWithPhoneNumber() async {}
 
   Future<LoadResult<AuthResultData?>> login(String userId) async {
     try {
+      // Тело запроса.
       final Map<String, dynamic> data = {
         'uid': userId,
       };
@@ -59,6 +60,7 @@ class AuthRepository {
 
   Future<LoadResult<AuthResultData?>> register(String userId) async {
     try {
+      // Тело запроса.
       final Map<String, dynamic> data = {
         'uid': userId,
       };
