@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "220697062185-4h2no3146p12gajms4h2ostm6l6f7qe9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.genicat.treearth",
+            "certificate_hash": "5e84cffb9de53ef87865f66e8054ad5172bb5879"
+          }
+        },
+        {
+          "client_id": "220697062185-5qeps9psqm7rh8nhnr6rjd136c1gac6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.genicat.treearth",
+            "certificate_hash": "bdba34cbe0090eded5ee83995e2c2a1bbf6a3f7f"
+          }
+        },
+        {
           "client_id": "220697062185-27oeokil7o6f1crbf15elo2l62vdd3r5.apps.googleusercontent.com",
           "client_type": 3
         }

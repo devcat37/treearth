@@ -30,8 +30,12 @@ abstract class _AuthStateBase with Store {
   @action
   Future<bool> signInWithPhoneNumber() async {
     // Получение номера телефона пользователя и подтверждение его на pin-странице.
-    return true;
-    return await authorize();
+    final userId = await authRepository.signInWithPhoneNumber();
+    if (userId == null) return false;
+
+    final accessToken = generateAccessToken({'userId': userId});
+
+    return await authorize(accessToken: accessToken);
   }
 
   /// Получение информации от бэкэнда по пользовательскому ID,
@@ -40,6 +44,7 @@ abstract class _AuthStateBase with Store {
   Future<bool> authorize({String? accessToken}) async {
     // Берем токен из локального хранилища если он не был передан как аргумент (или равен null).
     accessToken ??= settings.accessToken;
+    settings.accessToken = accessToken;
     // Первая проверка. Если нет токена, то пользователь точно не авторизован.
     if (accessToken.isEmpty) return false;
 

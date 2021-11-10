@@ -25,4 +25,6 @@ class AuthRepository {
     // Возвращается ID пользователя.
     return userCredential.user?.uid;
   }
+
+  Future<String?> signInWithPhoneNumber() async {}
 }
