@@ -2,9 +2,12 @@
 import 'package:mobx/mobx.dart';
 
 // Project imports:
+import 'package:treearth/data/models/auth_result_data.dart';
 import 'package:treearth/data/repository/auth/auth_repository.dart';
+import 'package:treearth/domain/repository/load_result.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/services/settings.dart';
+import 'package:treearth/internal/states/user_state/user_state.dart';
 
 part 'auth_state.g.dart';
 
@@ -13,41 +16,58 @@ class AuthState = _AuthStateBase with _$AuthState;
 abstract class _AuthStateBase with Store {
   Settings get settings => service<Settings>();
   AuthRepository get authRepository => service<AuthRepository>();
+  UserState get userState => service<UserState>();
 
   /// Авторизация с помощью google sign in provider.
   @action
   Future<bool> signInWithGoogle() async {
     // Получаем ID пользователя через репозиторий.
-    final userId = await authRepository.signInWithGoogle();
-    if (userId == null) return false;
+    final userCredential = await authRepository.signInWithGoogle();
+    if (userCredential?.user == null) return false;
 
-    final accessToken = generateAccessToken({'userId': userId});
-
-    return await authorize(accessToken: accessToken);
+    return await authorize(userId: userCredential!.user!.uid, isNew: userCredential.additionalUserInfo?.isNewUser);
   }
 
   // Авторизация с помощью номера телефона.
   @action
   Future<bool> signInWithPhoneNumber() async {
     // Получение номера телефона пользователя и подтверждение его на pin-странице.
-    return true;
-    return await authorize();
+    final userCredential = await authRepository.signInWithPhoneNumber();
+    if (userCredential?.user == null) return false;
+
+    return await authorize(userId: userCredential!.user!.uid, isNew: userCredential.additionalUserInfo?.isNewUser);
   }
 
   /// Получение информации от бэкэнда по пользовательскому ID,
   /// который передается как access token в payload.
   @action
-  Future<bool> authorize({String? accessToken}) async {
+  Future<bool> authorize({String? userId, bool? isNew = false}) async {
     // Берем токен из локального хранилища если он не был передан как аргумент (или равен null).
-    accessToken ??= settings.accessToken;
+    userId ??= settings.userId;
     // Первая проверка. Если нет токена, то пользователь точно не авторизован.
-    if (accessToken.isEmpty) return false;
+    if (userId.isEmpty) return false;
 
     // Получение пользователя по access токену.
 
     // Если пользователь авторизован через firebase, но у него не получается
     // получить информацию от бэкэнда, то его нужно разлогинить.
-    if (accessToken.isNotEmpty) return true;
+    LoadResult<AuthResultData?> authResult;
+    if (isNew == true)
+      authResult = await authRepository.register(userId);
+    else
+      authResult = await authRepository.login(userId);
+
+    if (authResult.isSuccessful && authResult.data != null) {
+      settings.userId = userId;
+
+      // Сохранение access и refresh токенов.
+      settings.accessToken = authResult.data!.accessToken;
+      settings.refreshToken = authResult.data!.refreshToken;
+
+      // Сохранение пользователя в стейт.
+      userState.user = authResult.data!.user;
+      return true;
+    }
     // ----------------------------------------
 
     // Стандартно - пользователь не авторизован.

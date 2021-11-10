@@ -7,9 +7,13 @@ class Settings {
   late FlutterSecureStorage _storage;
   late Map<String, String> _secureValues;
 
+  static const backendUrl = 'http://192.168.1.8:443/rest-api';
+
   static const appName = 'Treearth';
 
   static const accessTokenKey = 'accessToken';
+  static const refreshTokenKey = 'refreshToken';
+  static const userIdKey = 'uid';
 
   Future initStorage() async {
     _storage = const FlutterSecureStorage();
@@ -24,5 +28,17 @@ class Settings {
   set accessToken(String token) {
     _secureValues[accessTokenKey] = token;
     _storage.write(key: accessTokenKey, value: token);
+  }
+
+  String get refreshToken => _secureValues[refreshTokenKey] ?? '';
+  set refreshToken(String token) {
+    _secureValues[refreshTokenKey] = token;
+    _storage.write(key: refreshTokenKey, value: token);
+  }
+
+  String get userId => _secureValues[userIdKey] ?? '';
+  set userId(String uid) {
+    _secureValues[userIdKey] = uid;
+    _storage.write(key: userIdKey, value: uid);
   }
 }

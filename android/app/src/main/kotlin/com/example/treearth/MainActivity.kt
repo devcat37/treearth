@@ -1,4 +1,4 @@
-package com.example.treearth
+package com.genicat.treearth
 
 import io.flutter.embedding.android.FlutterActivity
 

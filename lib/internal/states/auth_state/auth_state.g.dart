@@ -29,9 +29,9 @@ mixin _$AuthState on _AuthStateBase, Store {
   final _$authorizeAsyncAction = AsyncAction('_AuthStateBase.authorize');
 
   @override
-  Future<bool> authorize({String? accessToken}) {
+  Future<bool> authorize({String? userId, bool? isNew = false}) {
     return _$authorizeAsyncAction
-        .run(() => super.authorize(accessToken: accessToken));
+        .run(() => super.authorize(userId: userId, isNew: isNew));
   }
 
   @override

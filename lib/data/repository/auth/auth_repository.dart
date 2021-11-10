@@ -2,7 +2,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+// Project imports:
+import 'package:treearth/data/api/api_client.dart';
+import 'package:treearth/data/models/auth_result_data.dart';
+import 'package:treearth/domain/repository/load_result.dart';
+import 'package:treearth/internal/services/service_locator.dart';
+import 'package:treearth/internal/services/settings.dart';
+
 class AuthRepository {
+  static const AUTH_ENDPOINT = Settings.backendUrl + '/auth';
+  static const LOGIN_ENDPOINT = AUTH_ENDPOINT + '/login';
+  static const REGISTER_ENDPOINT = AUTH_ENDPOINT + '/registration';
+
+  ApiClient get apiClient => service<ApiClient>();
+
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
       'email',
@@ -10,8 +23,8 @@ class AuthRepository {
     ],
   );
 
-  /// Возвращает uid пользователя с firebase для дальнейшей авторизации.
-  Future<String?> signInWithGoogle() async {
+  /// Возвращает пользователя с firebase для дальнейшей авторизации.
+  Future<UserCredential?> signInWithGoogle() async {
     // Получение google пользователя с его access токеном.
     GoogleSignInAccount? googleAccount;
     googleAccount = await _googleSignIn.signIn();
@@ -23,6 +36,41 @@ class AuthRepository {
     final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
     // Возвращается ID пользователя.
-    return userCredential.user?.uid;
+    return userCredential;
+  }
+
+  Future<UserCredential?> signInWithPhoneNumber() async {}
+
+  Future<LoadResult<AuthResultData?>> login(String userId) async {
+    try {
+      // Тело запроса.
+      final Map<String, dynamic> data = {
+        'uid': userId,
+      };
+
+      final Map<String, dynamic> result =
+          await apiClient.post(url: LOGIN_ENDPOINT, data: data).then((value) => value.data);
+
+      return LoadResult(data: AuthResultData.fromJson(result['data']));
+    } catch (e) {
+      print(e);
+      return LoadResult(exception: e);
+    }
+  }
+
+  Future<LoadResult<AuthResultData?>> register(String userId) async {
+    try {
+      // Тело запроса.
+      final Map<String, dynamic> data = {
+        'uid': userId,
+      };
+
+      final Map<String, dynamic> result =
+          await apiClient.post(url: REGISTER_ENDPOINT, data: data).then((value) => value.data);
+
+      return LoadResult(data: AuthResultData.fromJson(result['data']));
+    } catch (e) {
+      return LoadResult(exception: e);
+    }
   }
 }
