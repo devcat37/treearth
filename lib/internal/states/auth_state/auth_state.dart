@@ -57,6 +57,8 @@ abstract class _AuthStateBase with Store {
     else
       authResult = await authRepository.login(userId);
 
+    if (authResult.data == null) return false;
+
     if (authResult.isSuccessful && authResult.data != null) {
       settings.userId = userId;
 

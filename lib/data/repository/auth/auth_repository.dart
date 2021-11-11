@@ -27,6 +27,7 @@ class AuthRepository {
   Future<UserCredential?> signInWithGoogle() async {
     // Получение google пользователя с его access токеном.
     GoogleSignInAccount? googleAccount;
+    await _googleSignIn.signOut();
     googleAccount = await _googleSignIn.signIn();
 
     // Авторизация в Firebase.

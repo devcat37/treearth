@@ -14,6 +14,7 @@ import 'package:treearth/internal/states/auth_state/auth_state.dart';
 import 'package:treearth/internal/states/banners_state/banners_state.dart';
 import 'package:treearth/internal/states/main_page_state/main_page_state.dart';
 import 'package:treearth/internal/states/notifications_state/notifications_state.dart';
+import 'package:treearth/internal/states/planet_page_state/planet_page_state.dart';
 import 'package:treearth/internal/states/user_state/user_state.dart';
 
 Future<void> main() async {
@@ -39,6 +40,7 @@ Future<void> main() async {
   service.registerLazySingleton<BannersState>(() => BannersState());
   service.registerLazySingleton<NotificationsState>(() => NotificationsState());
   service.registerLazySingleton<MainPageState>(() => MainPageState());
+  service.registerLazySingleton<PlanetPageState>(() => PlanetPageState());
 
   runApp(const Application());
 }
