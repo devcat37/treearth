@@ -16,11 +16,11 @@ mixin _$PlanetPageState on _PlanetPageStateBase, Store {
           Computed<CameraPosition>(() => super.cameraPosition,
               name: '_PlanetPageStateBase.cameraPosition'))
       .value;
-  Computed<ObservableSet<Spot>>? _$activeSpotsComputed;
+  Computed<ObservableList<Spot>>? _$activeSpotsComputed;
 
   @override
-  ObservableSet<Spot> get activeSpots => (_$activeSpotsComputed ??=
-          Computed<ObservableSet<Spot>>(() => super.activeSpots,
+  ObservableList<Spot> get activeSpots => (_$activeSpotsComputed ??=
+          Computed<ObservableList<Spot>>(() => super.activeSpots,
               name: '_PlanetPageStateBase.activeSpots'))
       .value;
 
@@ -43,13 +43,13 @@ mixin _$PlanetPageState on _PlanetPageStateBase, Store {
   final _$plantSpotsAtom = Atom(name: '_PlanetPageStateBase.plantSpots');
 
   @override
-  ObservableSet<PlantSpot> get plantSpots {
+  ObservableList<PlantSpot> get plantSpots {
     _$plantSpotsAtom.reportRead();
     return super.plantSpots;
   }
 
   @override
-  set plantSpots(ObservableSet<PlantSpot> value) {
+  set plantSpots(ObservableList<PlantSpot> value) {
     _$plantSpotsAtom.reportWrite(value, super.plantSpots, () {
       super.plantSpots = value;
     });
@@ -58,13 +58,13 @@ mixin _$PlanetPageState on _PlanetPageStateBase, Store {
   final _$trashSpotsAtom = Atom(name: '_PlanetPageStateBase.trashSpots');
 
   @override
-  ObservableSet<TrashSpot> get trashSpots {
+  ObservableList<TrashSpot> get trashSpots {
     _$trashSpotsAtom.reportRead();
     return super.trashSpots;
   }
 
   @override
-  set trashSpots(ObservableSet<TrashSpot> value) {
+  set trashSpots(ObservableList<TrashSpot> value) {
     _$trashSpotsAtom.reportWrite(value, super.trashSpots, () {
       super.trashSpots = value;
     });

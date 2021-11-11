@@ -7,6 +7,10 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// Package imports:
+import 'package:geocoding/geocoding.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 /// Конвертирует градусы в радианы.
 double degreeToRadian(double degree) => degree * pi / 180;
 
@@ -67,4 +71,10 @@ String generateNDigitsCode(int digits) {
     code += '${Random().nextInt(10)}';
   }
   return code;
+}
+
+Future<Placemark?> adressByLocation(LatLng location) async {
+  List<Placemark> placemarks = await placemarkFromCoordinates(location.latitude, location.longitude);
+
+  return placemarks.isNotEmpty ? placemarks.first : null;
 }

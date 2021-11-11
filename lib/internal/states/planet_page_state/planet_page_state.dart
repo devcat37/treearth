@@ -1,4 +1,5 @@
 // Package imports:
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobx/mobx.dart';
 
@@ -7,6 +8,7 @@ import 'package:treearth/domain/mocks/mock_spots.dart';
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/domain/models/spot/spot.dart';
 import 'package:treearth/domain/models/spot/trash_spot.dart';
+import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/internal/utils/utils.dart';
 
 part 'planet_page_state.g.dart';
@@ -22,6 +24,11 @@ enum PlanetPageSection {
 class PlanetPageState = _PlanetPageStateBase with _$PlanetPageState;
 
 abstract class _PlanetPageStateBase with Store {
+  /// Контроллер. Вынесен в стейт для управления при нажатии на маркер.
+  final CarouselController carouselController = CarouselController();
+
+  late GoogleMapController mapController;
+
   /// Начальное положение камеры в зависимости от локации пользователя.
   ///
   /// Локация может определяться автоматически, либо если нет доступа к GPS, то вручную.
@@ -34,14 +41,15 @@ abstract class _PlanetPageStateBase with Store {
 
   /// Набор точек растительности, с которыми можно взаимодействовать.
   @observable
-  ObservableSet<PlantSpot> plantSpots = ObservableSet.of(allMockPlantSpots);
+  ObservableList<PlantSpot> plantSpots = ObservableList.of(allMockPlantSpots);
 
   /// Набор точек мусора, с которыми можно взаимодействовать.
   @observable
-  ObservableSet<TrashSpot> trashSpots = ObservableSet.of(allMockTrashSpots);
+  ObservableList<TrashSpot> trashSpots = ObservableList.of(allMockTrashSpots);
 
   @computed
-  ObservableSet<Spot> get activeSpots => section == PlanetPageSection.plants ? plantSpots : trashSpots;
+  ObservableList<Spot> get activeSpots =>
+      ObservableList.of(section == PlanetPageSection.plants ? plantSpots : trashSpots);
 
   /// Текущий выбранный раздел на странице.
   ///
@@ -52,6 +60,11 @@ abstract class _PlanetPageStateBase with Store {
   @action
   Future<void> changeSection(int sectionIndex) async {
     section = PlanetPageSection.values.elementAt(sectionIndex);
+  }
+
+  Future<void> onTapMarker(String markerId) async {
+    carouselController.animateToPage(activeSpots.indexWhere((spot) => spot.id == markerId),
+        duration: defaultAnimationDuration * 2);
   }
 }
 

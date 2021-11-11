@@ -53,8 +53,9 @@ class AuthRepository {
           await apiClient.post(url: LOGIN_ENDPOINT, data: data).then((value) => value.data);
 
       return LoadResult(data: AuthResultData.fromJson(result['data']));
-    } catch (e) {
+    } catch (e, s) {
       print(e);
+      print(s);
       return LoadResult(exception: e);
     }
   }

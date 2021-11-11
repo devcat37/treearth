@@ -27,14 +27,18 @@ final allMockTrashSpots = [
   mockTrashSpot8,
 ];
 
-final mockPlantSpot1 = PlantSpot(id: '12345', position: LatLng(56.858682854961096, 40.55477844182544));
-final mockPlantSpot2 = PlantSpot(id: '123456', position: LatLng(56.85779680188899, 40.55255966683722));
-final mockPlantSpot3 = PlantSpot(id: '123gdf45', position: LatLng(56.85924396540113, 40.53386457959286));
-final mockPlantSpot4 = PlantSpot(id: '1234oui56', position: LatLng(56.859289073115924, 40.540844626845654));
-final mockPlantSpot5 = PlantSpot(id: '123df45', position: LatLng(56.854321895404475, 40.53983794521936));
-final mockPlantSpot6 = PlantSpot(id: '12as3456', position: LatLng(56.85078887708346, 40.53305114857434));
-final mockPlantSpot7 = PlantSpot(id: '12fgd3gdf45', position: LatLng(56.85120850213872, 40.52675458200965));
-final mockPlantSpot8 = PlantSpot(id: '12gf34oui56', position: LatLng(56.86254599805598, 40.51792174790172));
+final mockPlantSpot1 = PlantSpot(id: '12345', position: LatLng(56.858682854961096, 40.55477844182544), title: 'Пихта');
+final mockPlantSpot2 = PlantSpot(id: '123456', position: LatLng(56.85779680188899, 40.55255966683722), title: 'Кедр');
+final mockPlantSpot3 =
+    PlantSpot(id: '123gdf45', position: LatLng(56.85924396540113, 40.53386457959286), title: 'Лиственница');
+final mockPlantSpot4 =
+    PlantSpot(id: '1234oui56', position: LatLng(56.859289073115924, 40.540844626845654), title: 'Ягодный куст');
+final mockPlantSpot5 = PlantSpot(id: '123df45', position: LatLng(56.854321895404475, 40.53983794521936), title: 'Хвоя');
+final mockPlantSpot6 = PlantSpot(id: '12as3456', position: LatLng(56.85078887708346, 40.53305114857434), title: 'Туя');
+final mockPlantSpot7 =
+    PlantSpot(id: '12fgd3gdf45', position: LatLng(56.85120850213872, 40.52675458200965), title: 'Дуб');
+final mockPlantSpot8 =
+    PlantSpot(id: '12gf34oui56', position: LatLng(56.86254599805598, 40.51792174790172), title: 'Пихта');
 
 final mockTrashSpot1 = TrashSpot(id: '22345', position: LatLng(56.85876405175121, 40.55567369032012));
 final mockTrashSpot2 = TrashSpot(id: '223456', position: LatLng(56.85789534956858, 40.55449870750053));

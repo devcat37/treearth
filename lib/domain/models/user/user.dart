@@ -28,7 +28,7 @@ abstract class _UserBase with Store {
   });
 
   /// ID пользователя в базе данных.
-  @JsonKey(name: '_id')
+  @JsonKey(name: 'id')
   final String id;
 
   /// ID пользователя при авторизации.
