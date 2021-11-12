@@ -17,20 +17,15 @@ class SpotsRepository {
 
   Future<ListLoadResult<Spot>> loadSpotsInRadius(double latitude, double longtitude) async {
     try {
-      // Тело запроса.
+      // Параметры запроса.
       final Map<String, dynamic> params = {
         Settings.latitudeKey: latitude,
         Settings.longtitudeKey: longtitude,
         Settings.radiusKey: Settings.defaultSearchSpotRadius,
       };
 
-      final Map<String, dynamic> headers = {
-        'Authorization': 'Bearer ${settings.accessToken}',
-      };
-
-      final Map<String, dynamic> result = await apiClient
-          .get(url: GET_IN_RADIUS_ENDPOINT, params: params, headers: headers)
-          .then((value) => value.data);
+      final Map<String, dynamic> result =
+          await apiClient.get(url: GET_IN_RADIUS_ENDPOINT, params: params).then((value) => value.data);
 
       final List<dynamic> data = result['data'];
       final List<Map<String, dynamic>> mappedData = data.map((e) => e as Map<String, dynamic>).toList();

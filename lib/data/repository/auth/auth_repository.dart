@@ -13,6 +13,7 @@ class AuthRepository {
   static const AUTH_ENDPOINT = Settings.backendUrl + '/auth';
   static const LOGIN_ENDPOINT = AUTH_ENDPOINT + '/login';
   static const REGISTER_ENDPOINT = AUTH_ENDPOINT + '/registration';
+  static const REFRESH_ENDPOINT = AUTH_ENDPOINT + '/refresh';
 
   ApiClient get apiClient => service<ApiClient>();
 
@@ -69,6 +70,22 @@ class AuthRepository {
 
       final Map<String, dynamic> result =
           await apiClient.post(url: REGISTER_ENDPOINT, data: data).then((value) => value.data);
+
+      return LoadResult(data: AuthResultData.fromJson(result['data']));
+    } catch (e) {
+      return LoadResult(exception: e);
+    }
+  }
+
+  Future<LoadResult<AuthResultData?>> refreshToken() async {
+    try {
+      // Тело запроса.
+      final Map<String, dynamic> data = {
+        Settings.refreshTokenKey: service<Settings>().refreshToken,
+      };
+
+      final Map<String, dynamic> result =
+          await apiClient.post(url: REFRESH_ENDPOINT, data: data).then((value) => value.data);
 
       return LoadResult(data: AuthResultData.fromJson(result['data']));
     } catch (e) {

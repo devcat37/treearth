@@ -21,6 +21,14 @@ class TrashSpotContainer extends StatelessWidget {
   final TrashSpot trash;
   final Function()? onPressed;
 
+  Future<String?> _getObjectLocationName() async {
+    if (trash.placemark == null) {
+      final locationName = await adressByLocation(trash.position);
+      trash.placemark = locationName;
+    }
+    return trash.placemark?.street ?? trash.placemark?.locality;
+  }
+
   Widget _buildImage(BuildContext context) {
     return Hero(
       tag: trash.id,
@@ -61,9 +69,14 @@ class TrashSpotContainer extends StatelessWidget {
           style: style.copyWith(color: lightGreyTextColor, letterSpacing: 1.1),
         ),
         const SizedBox(height: sidePadding2),
-        Text(
-          trash.placemark?.street ?? trash.placemark?.subAdministrativeArea ?? 'Неустановлено',
-          style: style.copyWith(color: darkGreyTextColor),
+        FutureBuilder(
+          future: _getObjectLocationName(),
+          builder: (_, AsyncSnapshot<String?> data) {
+            return Text(
+              data.data ?? 'Неустановлено',
+              style: style.copyWith(color: darkGreyTextColor),
+            );
+          },
         ),
       ],
     );

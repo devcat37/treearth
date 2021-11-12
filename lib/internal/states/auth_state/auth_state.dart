@@ -1,3 +1,6 @@
+// Dart imports:
+import 'dart:async';
+
 // Package imports:
 import 'package:mobx/mobx.dart';
 
@@ -76,9 +79,5 @@ abstract class _AuthStateBase with Store {
     return false;
   }
 
-  /// Генерация access токена с подписью сервера авторизации и payload.
-  String generateAccessToken(Map<String, dynamic> payload) {
-    // TODO: сделать адекватную генерацию токена.
-    return payload.toString();
-  }
+  Future<void> logout() async {}
 }

@@ -1,14 +1,23 @@
 
 ### Авторизация.
 POST http://192.168.1.8:443/rest-api/auth/login
-
 Content-Type: application/json
+
 {
-    "uid": "pzDPlqJy7eM6ZQsaHBMjD0w5K892"
+    "uid": "bFfhQpBISKcvABh1CjQdtsfEXmF3"
 }
+
+### Обновить токен пользователя.
+POST http://192.168.1.8:443/rest-api/auth/refresh
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJiRmZoUXBCSVNLY3ZBQmgxQ2pRZHRzZkVYbUYzIiwiaWQiOiI2MThiYmY3NzdiYjc4MzAxNDhmYmIzZDEiLCJpYXQiOjE2MzY3MDg2MDcsImV4cCI6MTYzOTMwMDYwN30.7B5LMFBbPkrEjB3GxAeEM_MvpAZ48tiAQKtacP0ZUDs"
+}
+
 
 ### Получить точки в радиусе локации.
 GET http://192.168.1.8:443/rest-api/spots/getInRadius?latitude=56&longtitude=40&radius=2
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJwekRQbHFKeTdlTTZaUXNhSEJNakQwdzVLODkyIiwiaWQiOiI2MThiYzFhODdiYjc4MzAxNDhmYmIzZTUiLCJpYXQiOjE2MzY2OTkxMDIsImV4cCI6MTYzNjcwMDkwMn0.7lHMhZRHrENphc349FJLVY1Nj9lhFfRjf1DwwsIbY54
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJiRmZoUXBCSVNLY3ZBQmgxQ2pRZHRzZkVYbUYzIiwiaWQiOiI2MThiYmY3NzdiYjc4MzAxNDhmYmIzZDEiLCJpYXQiOjE2MzY3MDgwNTEsImV4cCI6MTYzNjcwOTg1MX0.zd8baU1kmmuv0uCuPWEt9Fr6Vzj9Ch9SgOo_iBNSBIo
 Content-Type: application/json
 

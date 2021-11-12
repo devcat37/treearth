@@ -21,6 +21,14 @@ class PlantSpotContainer extends StatelessWidget {
 
   static const defaultHeight = 140.0;
 
+  Future<String?> getObjectLocationName() async {
+    if (plant.placemark == null) {
+      final locationName = await adressByLocation(plant.position);
+      plant.placemark = locationName;
+    }
+    return plant.placemark?.street ?? plant.placemark?.locality;
+  }
+
   Widget _buildImage(BuildContext context) {
     return Hero(
       tag: plant.id,
@@ -60,10 +68,15 @@ class PlantSpotContainer extends StatelessWidget {
           style: style.copyWith(color: lightGreyTextColor, letterSpacing: 1.1),
         ),
         const SizedBox(height: sidePadding2),
-        Text(
-          plant.placemark?.street ?? plant.placemark?.subAdministrativeArea ?? 'Неустановлено',
-          style: style.copyWith(color: darkGreyTextColor),
-        ),
+        FutureBuilder(
+          future: getObjectLocationName(),
+          builder: (_, AsyncSnapshot<String?> data) {
+            return Text(
+              data.data ?? 'Неустановлено',
+              style: style.copyWith(color: darkGreyTextColor),
+            );
+          },
+        )
       ],
     );
   }

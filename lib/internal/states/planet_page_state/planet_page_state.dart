@@ -1,11 +1,9 @@
 // Package imports:
 import 'package:carousel_slider/carousel_controller.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobx/mobx.dart';
 
 // Project imports:
-import 'package:treearth/domain/mocks/mock_spots.dart';
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/domain/models/spot/spot.dart';
 import 'package:treearth/domain/models/spot/trash_spot.dart';
@@ -82,9 +80,10 @@ abstract class _PlanetPageStateBase with Store {
     cameraPosition = cameraPosition;
 
     // Ограничение на количество запросов.
-    if (distanceBetweenPoints(position.target, _lastFetchPosititon) >= Settings.defaultSearchSpotRadius / 2) {
-      spotsState.loadSpots(position.target);
+    if (distanceBetweenPoints(position.target, _lastFetchPosititon) >=
+        (8 * Settings.defaultSearchSpotRadius / await mapController.getZoomLevel()) / 2) {
       _lastFetchPosititon = position.target;
+      await spotsState.loadSpots(position.target);
     }
   }
 }

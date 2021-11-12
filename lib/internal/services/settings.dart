@@ -8,6 +8,8 @@ class Settings {
   late Map<String, String> _secureValues;
 
   static const backendUrl = 'http://192.168.1.8:443/rest-api';
+  static const JWT_ACCESS_SECRET = '4b&uH`>PD^+@"3fP';
+  static const JWT_REFRESH_SECRET = 'Nc9"Zp&\$[ayPs=3p';
 
   static const appName = 'Treearth';
 

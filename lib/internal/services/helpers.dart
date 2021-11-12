@@ -8,8 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+// Project imports:
+import 'package:treearth/internal/services/settings.dart';
 
 /// Конвертирует градусы в радианы.
 double degreeToRadian(double degree) => degree * pi / 180;
@@ -81,4 +85,13 @@ Future<Placemark?> adressByLocation(LatLng location) async {
 
 double distanceBetweenPoints(LatLng first, LatLng second) {
   return sqrt(pow(first.latitude - second.latitude, 2) + pow(first.longitude - second.longitude, 2));
+}
+
+bool hasTokenExpired(String token) {
+  try {
+    final res = JWT.verify(token, SecretKey(Settings.JWT_ACCESS_SECRET));
+    return false;
+  } on JWTError {
+    return true;
+  }
 }
