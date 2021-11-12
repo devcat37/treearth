@@ -1,8 +1,14 @@
 
 ### Авторизация.
 POST http://192.168.1.8:443/rest-api/auth/login
-Content-Type: application/json
 
+Content-Type: application/json
 {
     "uid": "pzDPlqJy7eM6ZQsaHBMjD0w5K892"
 }
+
+### Получить точки в радиусе локации.
+GET http://192.168.1.8:443/rest-api/spots/getInRadius?latitude=56&longtitude=40&radius=2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJwekRQbHFKeTdlTTZaUXNhSEJNakQwdzVLODkyIiwiaWQiOiI2MThiYzFhODdiYjc4MzAxNDhmYmIzZTUiLCJpYXQiOjE2MzY2OTkxMDIsImV4cCI6MTYzNjcwMDkwMn0.7lHMhZRHrENphc349FJLVY1Nj9lhFfRjf1DwwsIbY54
+Content-Type: application/json
+

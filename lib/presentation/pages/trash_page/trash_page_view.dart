@@ -35,6 +35,53 @@ class TrashPageView extends StatelessWidget {
     );
   }
 
+  Widget _buildTrashTitle(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: sidePadding),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text: 'Согласись,\n',
+              style: Theme.of(context).textTheme.headline3!.copyWith(color: semiDarkOrangeColor),
+            ),
+            TextSpan(
+              text: 'выглядит неприятно?',
+              style: Theme.of(context).textTheme.headline3!.copyWith(color: blackColor),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTrashSubtitle(BuildContext context) {
+    final style = Theme.of(context).textTheme.bodyText1!.copyWith(height: 20 / 14);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: sidePadding),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text:
+                  'Помоги городу вместе с друзьями: очисти грязный объект, загрузи фото-отчет, и тогда картинка здесь поменяется на ',
+              style: style.copyWith(color: lightGreyTextColor),
+            ),
+            TextSpan(
+              text: 'привлекательную',
+              style: style.copyWith(color: semiDarkOrangeColor),
+            ),
+            TextSpan(
+              text: ', а в городе станет на одну грязную точку меньше!',
+              style: style.copyWith(color: lightGreyTextColor),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildCarousel(BuildContext context) {
     return TreeCarousel(
       activeDotColor: semiDarkOrangeColor,
@@ -62,6 +109,9 @@ class TrashPageView extends StatelessWidget {
             const SizedBox(height: sidePadding8),
             _buildCarousel(context),
             const SizedBox(height: sidePadding12),
+            _buildTrashTitle(context),
+            const SizedBox(height: sidePadding16),
+            _buildTrashSubtitle(context),
           ],
         ),
       ),

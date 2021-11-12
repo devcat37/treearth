@@ -1,3 +1,6 @@
+// Dart imports:
+import 'dart:developer';
+
 // Flutter imports:
 import 'package:flutter/material.dart';
 
@@ -11,11 +14,13 @@ import 'package:treearth/domain/models/spot/spot.dart';
 import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/planet_page_state/planet_page_state.dart';
+import 'package:treearth/internal/states/spots_state/spots_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/internal/utils/utils.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/bottom_app_bar.dart' as b;
 import 'package:treearth/presentation/global/tab_bar/tree_tab_bar.dart';
+import 'package:treearth/presentation/global/tab_bar/tree_tab_bar_item.dart';
 import 'package:treearth/presentation/global/tab_bar_controller/tree_tab_bar_controller.dart';
 import 'package:treearth/presentation/widgets/planet_page/spots_carousel.dart';
 
@@ -28,6 +33,7 @@ class PlanetPageView extends StatefulWidget {
 
 class _PlanetPageViewState extends State<PlanetPageView> {
   PlanetPageState get state => service<PlanetPageState>();
+  SpotsState get spotsState => service<SpotsState>();
 
   final TreeTabBarController _tabController = TreeTabBarController();
 
@@ -72,19 +78,27 @@ class _PlanetPageViewState extends State<PlanetPageView> {
       body: Stack(
         children: [
           Observer(
-            builder: (_) => FutureBuilder(
-              future: _createMarkers(state.activeSpots),
-              builder: (_, AsyncSnapshot<Set<Marker>> snapshot) => GoogleMap(
-                mapToolbarEnabled: false,
-                initialCameraPosition: state.cameraPosition,
-                onMapCreated: onMapCreated,
-                markers: snapshot.data ?? {},
-              ),
-            ),
+            builder: (context) {
+              log('Количество видимых точек: ${state.activeSpots.length}');
+
+              return FutureBuilder(
+                future: _createMarkers(state.activeSpots),
+                builder: (context, AsyncSnapshot<Set<Marker>> snapshot) => GoogleMap(
+                  onCameraMove: state.onCameraPositionChanged,
+                  mapToolbarEnabled: false,
+                  initialCameraPosition: state.cameraPosition,
+                  onMapCreated: onMapCreated,
+                  markers: snapshot.data ?? {},
+                ),
+              );
+            },
           ),
           TreeTabBar(
             controller: _tabController,
-            items: PlanetPageSection.values.map((e) => e.title).toList(),
+            items: [
+              TreeTabBarItem(title: PlanetPageSection.plants.title, activeColor: lightGreenColor),
+              TreeTabBarItem(title: PlanetPageSection.trash.title, activeColor: semiDarkOrangeColor),
+            ],
             onPageChanged: (page) => state.changeSection(page),
           ),
           Align(
@@ -92,9 +106,13 @@ class _PlanetPageViewState extends State<PlanetPageView> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: b.BottomAppBar.defaultHeight + sidePadding),
               child: Observer(
-                builder: (_) => SpotsCarousel(
-                  spots: state.activeSpots,
-                ),
+                builder: (context) {
+                  log('Количество видимых точек: ${state.activeSpots.length}'.substring(0, 0));
+
+                  return SpotsCarousel(
+                    spots: state.activeSpots,
+                  );
+                },
               ),
             ),
           ),

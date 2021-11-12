@@ -78,3 +78,7 @@ Future<Placemark?> adressByLocation(LatLng location) async {
 
   return placemarks.isNotEmpty ? placemarks.first : null;
 }
+
+double distanceBetweenPoints(LatLng first, LatLng second) {
+  return sqrt(pow(first.latitude - second.latitude, 2) + pow(first.longitude - second.longitude, 2));
+}

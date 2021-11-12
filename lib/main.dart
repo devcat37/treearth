@@ -7,6 +7,7 @@ import 'package:treearth/data/api/api_client.dart';
 import 'package:treearth/data/repository/auth/auth_repository.dart';
 import 'package:treearth/data/repository/banners/banners_repository.dart';
 import 'package:treearth/data/repository/notifications/notifications_repository.dart';
+import 'package:treearth/data/repository/spots/spots_repository.dart';
 import 'package:treearth/internal/application.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/services/settings.dart';
@@ -15,6 +16,7 @@ import 'package:treearth/internal/states/banners_state/banners_state.dart';
 import 'package:treearth/internal/states/main_page_state/main_page_state.dart';
 import 'package:treearth/internal/states/notifications_state/notifications_state.dart';
 import 'package:treearth/internal/states/planet_page_state/planet_page_state.dart';
+import 'package:treearth/internal/states/spots_state/spots_state.dart';
 import 'package:treearth/internal/states/user_state/user_state.dart';
 
 Future<void> main() async {
@@ -33,6 +35,7 @@ Future<void> main() async {
   service.registerLazySingleton<AuthRepository>(() => AuthRepository());
   service.registerLazySingleton<BannersRepository>(() => BannersRepository());
   service.registerLazySingleton<NotificationsRepository>(() => NotificationsRepository());
+  service.registerLazySingleton<SpotsRepository>(() => SpotsRepository());
 
   // States.
   service.registerLazySingleton<AuthState>(() => AuthState());
@@ -41,6 +44,7 @@ Future<void> main() async {
   service.registerLazySingleton<NotificationsState>(() => NotificationsState());
   service.registerLazySingleton<MainPageState>(() => MainPageState());
   service.registerLazySingleton<PlanetPageState>(() => PlanetPageState());
+  service.registerLazySingleton<SpotsState>(() => SpotsState());
 
   runApp(const Application());
 }

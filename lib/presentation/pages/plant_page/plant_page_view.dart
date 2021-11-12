@@ -68,6 +68,25 @@ class PlantPageView extends StatelessWidget {
     );
   }
 
+  Widget _buildPlantSubtitle(BuildContext context) {
+    final style = Theme.of(context).textTheme.bodyText1!.copyWith(height: 20 / 14);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: sidePadding),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            TextSpan(
+              text:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+              style: style.copyWith(color: lightGreyTextColor),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildImage(BuildContext context) {
     return Stack(
       children: [
@@ -129,6 +148,8 @@ class PlantPageView extends StatelessWidget {
                 _buildCarousel(context),
                 const SizedBox(height: sidePadding12),
                 _buildPlantTitle(context),
+                const SizedBox(height: sidePadding16),
+                _buildPlantSubtitle(context),
               ],
             ),
           ),

@@ -9,12 +9,19 @@ part of 'planet_page_state.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PlanetPageState on _PlanetPageStateBase, Store {
-  Computed<CameraPosition>? _$cameraPositionComputed;
+  Computed<ObservableList<PlantSpot>>? _$plantSpotsComputed;
 
   @override
-  CameraPosition get cameraPosition => (_$cameraPositionComputed ??=
-          Computed<CameraPosition>(() => super.cameraPosition,
-              name: '_PlanetPageStateBase.cameraPosition'))
+  ObservableList<PlantSpot> get plantSpots => (_$plantSpotsComputed ??=
+          Computed<ObservableList<PlantSpot>>(() => super.plantSpots,
+              name: '_PlanetPageStateBase.plantSpots'))
+      .value;
+  Computed<ObservableList<TrashSpot>>? _$trashSpotsComputed;
+
+  @override
+  ObservableList<TrashSpot> get trashSpots => (_$trashSpotsComputed ??=
+          Computed<ObservableList<TrashSpot>>(() => super.trashSpots,
+              name: '_PlanetPageStateBase.trashSpots'))
       .value;
   Computed<ObservableList<Spot>>? _$activeSpotsComputed;
 
@@ -23,6 +30,22 @@ mixin _$PlanetPageState on _PlanetPageStateBase, Store {
           Computed<ObservableList<Spot>>(() => super.activeSpots,
               name: '_PlanetPageStateBase.activeSpots'))
       .value;
+
+  final _$cameraPositionAtom =
+      Atom(name: '_PlanetPageStateBase.cameraPosition');
+
+  @override
+  CameraPosition get cameraPosition {
+    _$cameraPositionAtom.reportRead();
+    return super.cameraPosition;
+  }
+
+  @override
+  set cameraPosition(CameraPosition value) {
+    _$cameraPositionAtom.reportWrite(value, super.cameraPosition, () {
+      super.cameraPosition = value;
+    });
+  }
 
   final _$_targetCoordinatesAtom =
       Atom(name: '_PlanetPageStateBase._targetCoordinates');
@@ -37,36 +60,6 @@ mixin _$PlanetPageState on _PlanetPageStateBase, Store {
   set _targetCoordinates(LatLng value) {
     _$_targetCoordinatesAtom.reportWrite(value, super._targetCoordinates, () {
       super._targetCoordinates = value;
-    });
-  }
-
-  final _$plantSpotsAtom = Atom(name: '_PlanetPageStateBase.plantSpots');
-
-  @override
-  ObservableList<PlantSpot> get plantSpots {
-    _$plantSpotsAtom.reportRead();
-    return super.plantSpots;
-  }
-
-  @override
-  set plantSpots(ObservableList<PlantSpot> value) {
-    _$plantSpotsAtom.reportWrite(value, super.plantSpots, () {
-      super.plantSpots = value;
-    });
-  }
-
-  final _$trashSpotsAtom = Atom(name: '_PlanetPageStateBase.trashSpots');
-
-  @override
-  ObservableList<TrashSpot> get trashSpots {
-    _$trashSpotsAtom.reportRead();
-    return super.trashSpots;
-  }
-
-  @override
-  set trashSpots(ObservableList<TrashSpot> value) {
-    _$trashSpotsAtom.reportWrite(value, super.trashSpots, () {
-      super.trashSpots = value;
     });
   }
 
@@ -94,13 +87,30 @@ mixin _$PlanetPageState on _PlanetPageStateBase, Store {
         .run(() => super.changeSection(sectionIndex));
   }
 
+  final _$onTapMarkerAsyncAction =
+      AsyncAction('_PlanetPageStateBase.onTapMarker');
+
+  @override
+  Future<void> onTapMarker(String markerId) {
+    return _$onTapMarkerAsyncAction.run(() => super.onTapMarker(markerId));
+  }
+
+  final _$onCameraPositionChangedAsyncAction =
+      AsyncAction('_PlanetPageStateBase.onCameraPositionChanged');
+
+  @override
+  Future<void> onCameraPositionChanged(CameraPosition position) {
+    return _$onCameraPositionChangedAsyncAction
+        .run(() => super.onCameraPositionChanged(position));
+  }
+
   @override
   String toString() {
     return '''
+cameraPosition: ${cameraPosition},
+section: ${section},
 plantSpots: ${plantSpots},
 trashSpots: ${trashSpots},
-section: ${section},
-cameraPosition: ${cameraPosition},
 activeSpots: ${activeSpots}
     ''';
   }
