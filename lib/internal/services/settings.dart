@@ -11,9 +11,15 @@ class Settings {
 
   static const appName = 'Treearth';
 
+  static const latitudeKey = 'latitude';
+  static const longtitudeKey = 'longtitude';
+  static const radiusKey = 'radius';
+
   static const accessTokenKey = 'accessToken';
   static const refreshTokenKey = 'refreshToken';
   static const userIdKey = 'uid';
+
+  static const defaultSearchSpotRadius = 0.05;
 
   Future initStorage() async {
     _storage = const FlutterSecureStorage();

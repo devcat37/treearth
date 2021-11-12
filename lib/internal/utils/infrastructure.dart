@@ -5,6 +5,8 @@ const whiteColor = Color(0xFFFFFFFF);
 const blackColor = Color(0xFF000000);
 const lightGreyColor = Color(0xFFDADADA);
 const greyTextColor = Color(0xFFC6C6C6);
+const lightGreyTextColor = Color(0xFFC4C4C4);
+const darkGreyTextColor = Color(0xFF666666);
 const surfaceGreyColor = Color(0xFFF9F9F9);
 
 const lightGreenColor = Color(0xFFA6D331);
@@ -16,6 +18,7 @@ const lightPurpleColor = Color(0xFFB66DFF);
 
 const semiDarkGreenColor = Color(0xFF8BB72D);
 const semiDarkYellowColor = Color(0xFFFFC700);
+const semiDarkOrangeColor = Color(0xFFFF7A00);
 const semiDarkRedColor = Color(0xFFCE1900);
 
 const darkGreyColor = Color(0xFF5D5A58);
@@ -76,12 +79,14 @@ const greenGradient1 = [lightGreenColor, semiDarkGreenColor];
 
 // Paddings.
 const sidePadding = sidePadding24;
+const sidePadding2 = 2.0;
 const sidePadding4 = 4.0;
 const sidePadding5 = 5.0;
 const sidePadding6 = 6.0;
 const sidePadding8 = 8.0;
 const sidePadding10 = 10.0;
 const sidePadding12 = 12.0;
+const sidePadding14 = 14.0;
 const sidePadding16 = 16.0;
 const sidePadding18 = 18.0;
 const sidePadding24 = 24.0;

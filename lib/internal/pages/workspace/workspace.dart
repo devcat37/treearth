@@ -7,6 +7,7 @@ import 'package:treearth/internal/pages/planet_page/planet_page.dart';
 import 'package:treearth/internal/pages/profile_page/profile_page.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/main_page_state/main_page_state.dart';
+import 'package:treearth/internal/states/spots_state/spots_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/botom_app_bar_item.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/bottom_app_bar.dart';
@@ -31,6 +32,7 @@ class _WorkspaceState extends State<Workspace> {
   void initState() {
     // Инициализация стейта главной страницы (баннеры и т.д).
     service<MainPageState>().initialize();
+    service<SpotsState>().initialize();
 
     super.initState();
   }

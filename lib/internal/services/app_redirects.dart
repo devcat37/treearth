@@ -5,11 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:phone_number/phone_number.dart';
 
 // Project imports:
+import 'package:treearth/domain/models/spot/plant_spot.dart';
+import 'package:treearth/domain/models/spot/trash_spot.dart';
 import 'package:treearth/internal/pages/authorization_page/authorization_page.dart';
 import 'package:treearth/internal/pages/authorization_splash/authorization_splash.dart';
 import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
+import 'package:treearth/internal/pages/plant_page/plant_page.dart';
+import 'package:treearth/internal/pages/trash_page/trash_page.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/confirm_number_state/confirm_number_state.dart';
@@ -35,3 +39,9 @@ Future<void> goToMainPage(BuildContext context) async =>
     await Navigator.of(context).pushReplacementNamed(Workspace.routeName);
 
 void goToNotificationsPage(BuildContext context) => Navigator.of(context).pushNamed(NotificationsPage.routeName);
+
+void goToPlantingPage(BuildContext context, PlantSpot plant) =>
+    Navigator.of(context).pushNamed(PlantPage.routeName, arguments: plant);
+
+void goToTrashPage(BuildContext context, TrashSpot trash) =>
+    Navigator.of(context).pushNamed(TrashPage.routeName, arguments: trash);

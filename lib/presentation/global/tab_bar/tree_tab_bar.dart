@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Project imports:
 import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
+import 'package:treearth/presentation/global/tab_bar/tree_tab_bar_item.dart';
 import 'package:treearth/presentation/global/tab_bar_controller/tree_tab_bar_controller.dart';
 
 class TreeTabBar extends StatefulWidget {
@@ -16,7 +17,7 @@ class TreeTabBar extends StatefulWidget {
 
   static const defaultHeight = 56.0;
 
-  final List<String> items;
+  final List<TreeTabBarItem> items;
   final TreeTabBarController controller;
   final Function(int)? onPageChanged;
 
@@ -40,7 +41,7 @@ class _TreeTabBarState extends State<TreeTabBar> {
     super.dispose();
   }
 
-  Widget _buildItem(BuildContext context, {required int index, required String title}) {
+  Widget _buildItem(BuildContext context, {required int index, required String title, Color color = lightGreenColor}) {
     final style = Theme.of(context).textTheme.bodyText2!.copyWith(color: blackColor);
     final widgetSize = getTextWidgetSize(title, style);
 
@@ -63,7 +64,7 @@ class _TreeTabBarState extends State<TreeTabBar> {
               width: double.infinity,
               height: sidePadding4,
               decoration: BoxDecoration(
-                color: widget.controller.currentPage == index ? lightGreenColor : Colors.transparent,
+                color: widget.controller.currentPage == index ? color : Colors.transparent,
                 borderRadius: borderRadius2,
               ),
             ),
@@ -88,7 +89,8 @@ class _TreeTabBarState extends State<TreeTabBar> {
               (index) => _buildItem(
                 context,
                 index: index,
-                title: widget.items.elementAt(index),
+                title: widget.items.elementAt(index).title,
+                color: widget.items.elementAt(index).activeColor,
               ),
             ),
           ),
