@@ -169,7 +169,7 @@ class PlantSpotContainer extends StatelessWidget {
               .copyWith(fontSize: 10.0, color: darkGreyColor, fontWeight: FontWeight.bold),
         ),
         const SizedBox(width: sidePadding2),
-        Icon(Icons.play_arrow_rounded, size: 18.0),
+        Icon(Icons.play_arrow_rounded, size: 18.0, color: darkGreyColor),
       ],
     );
   }

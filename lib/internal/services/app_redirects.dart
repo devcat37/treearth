@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:phone_number/phone_number.dart';
 
 // Project imports:
+import 'package:treearth/domain/models/banner/tree_banner.dart';
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/domain/models/spot/trash_spot.dart';
 import 'package:treearth/internal/pages/authorization_page/authorization_page.dart';
 import 'package:treearth/internal/pages/authorization_splash/authorization_splash.dart';
+import 'package:treearth/internal/pages/banner_page/banner_page.dart';
 import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
@@ -64,6 +66,9 @@ Future<bool?> goToConfirmNumberPage<bool>(BuildContext context, PhoneNumber phon
   service.registerLazySingleton(() => ConfirmNumberState(phone: phone));
   return await Navigator.of(context).pushNamed(ConfirmNumberPage.routeName);
 }
+
+void goToBannerPage(BuildContext context, TreeBanner banner) =>
+    Navigator.of(context).pushNamed(BannerPage.routeName, arguments: banner);
 
 Future<void> goToMainPage(BuildContext context) async =>
     await Navigator.of(context).pushReplacementNamed(Workspace.routeName);

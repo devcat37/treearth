@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:phone_number/phone_number.dart';
 
 // Project imports:
+import 'package:treearth/domain/models/banner/tree_banner.dart';
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/domain/models/spot/trash_spot.dart';
 import 'package:treearth/internal/pages/authorization_page/authorization_page.dart';
 import 'package:treearth/internal/pages/authorization_splash/authorization_splash.dart';
+import 'package:treearth/internal/pages/banner_page/banner_page.dart';
 import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
@@ -52,6 +54,13 @@ class Application extends StatelessWidget {
             break;
           case Workspace.routeName:
             route = MaterialPageRoute(builder: (context) => const Workspace());
+            break;
+          case BannerPage.routeName:
+            route = MaterialPageRoute(
+              builder: (context) => BannerPage(
+                banner: routeSettings.arguments as TreeBanner,
+              ),
+            );
             break;
           case NotificationsPage.routeName:
             route = MaterialPageRoute(builder: (context) => const NotificationsPage());

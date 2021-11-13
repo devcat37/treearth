@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:treearth/domain/models/banner/tree_banner.dart';
+import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 
 class TreeBannerWidget extends StatelessWidget {
@@ -59,27 +60,25 @@ class TreeBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => goToBannerPage(context, banner),
       borderRadius: borderRadius32,
       child: Ink(
         height: TreeBannerWidget.defaultBannerHeight,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            color: lightGreyColor,
-            borderRadius: borderRadius32,
-            image: DecorationImage(
-              image: AssetImage(banner.asset),
-              fit: BoxFit.cover,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: blackColor.withOpacity(0.15),
-                blurRadius: 16.0,
-                offset: Offset(12, 12),
-              ),
-            ]),
+        decoration: BoxDecoration(color: lightGreyColor, borderRadius: borderRadius32, boxShadow: [
+          BoxShadow(
+            color: blackColor.withOpacity(0.15),
+            blurRadius: 16.0,
+            offset: Offset(12, 12),
+          ),
+        ]),
         child: Stack(
+          fit: StackFit.expand,
           children: [
+            ClipRRect(
+              borderRadius: borderRadius32,
+              child: Image.asset(banner.asset, fit: BoxFit.cover),
+            ),
             _buildOverlayGradient(context),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
