@@ -9,7 +9,9 @@ import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/static_map_at_object/static_map_at_object.dart';
+import 'package:treearth/presentation/global/tree_button/tree_button.dart';
 import 'package:treearth/presentation/global/tree_carousel/tree_carousel.dart';
+import 'package:treearth/presentation/widgets/plant_page/donators_list.dart';
 
 class PlantPageView extends StatelessWidget {
   const PlantPageView({
@@ -125,9 +127,44 @@ class PlantPageView extends StatelessWidget {
   }
 
   Widget _buildBottomDonatePlate(BuildContext context) {
-    return Container(
-      height: 80.0 + MediaQuery.of(context).padding.bottom,
-      color: buttonTextColor,
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          height: 80.0 + MediaQuery.of(context).padding.bottom,
+          color: buttonTextColor,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: sidePadding28),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DonatorsList(),
+              _buildDonateButton(context),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDonateButton(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        width: 100.0,
+        height: 48.0,
+        decoration: BoxDecoration(
+          color: semiDarkGreenColor,
+          borderRadius: borderRadius12,
+        ),
+        child: Center(
+          child: Text(
+            'DONATE',
+            style: Theme.of(context).textTheme.button!.copyWith(color: whiteColor),
+          ),
+        ),
+      ),
     );
   }
 

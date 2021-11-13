@@ -21,7 +21,7 @@ class PlantSpotContainer extends StatelessWidget {
 
   static const defaultHeight = 140.0;
 
-  Future<String?> getObjectLocationName() async {
+  Future<String?> _getObjectLocationName() async {
     if (plant.placemark == null) {
       final locationName = await adressByLocation(plant.position);
       plant.placemark = locationName;
@@ -69,14 +69,14 @@ class PlantSpotContainer extends StatelessWidget {
         ),
         const SizedBox(height: sidePadding2),
         FutureBuilder(
-          future: getObjectLocationName(),
+          future: _getObjectLocationName(),
           builder: (_, AsyncSnapshot<String?> data) {
             return Text(
               data.data ?? 'Неустановлено',
               style: style.copyWith(color: darkGreyTextColor),
             );
           },
-        )
+        ),
       ],
     );
   }
