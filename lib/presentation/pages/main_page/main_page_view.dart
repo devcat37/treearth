@@ -18,6 +18,7 @@ import 'package:treearth/presentation/global/notifications/notification_read.dar
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banner_widget.dart';
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banners.dart';
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banners_skeleton.dart';
+import 'package:treearth/presentation/widgets/main_page/goals_and_results/goals_and_results.dart';
 
 class MainPageView extends StatefulWidget {
   const MainPageView({Key? key}) : super(key: key);
@@ -58,6 +59,10 @@ class _MainPageViewState extends State<MainPageView> {
     });
   }
 
+  Widget _buildGoalsAndResults(BuildContext context) {
+    return GoalsAndResults();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +79,8 @@ class _MainPageViewState extends State<MainPageView> {
             children: [
               const SizedBox(height: sidePadding16),
               _buildBanners(context),
+              const SizedBox(height: sidePadding32),
+              _buildGoalsAndResults(context),
             ],
           ),
         ),

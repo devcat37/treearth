@@ -54,13 +54,13 @@ class _WorkspaceState extends State<Workspace> {
       ): const PlanetPage(),
 
       // Страница пока хз TODO!
-      BottomAppBarItem(
-        icon: TreeIcons.map,
-        activeIcon: TreeIcons.so_map,
-        activeColor: lightOrangeColor,
-      ): Scaffold(
-        backgroundColor: lightOrangeColor,
-      ),
+      // BottomAppBarItem(
+      //   icon: TreeIcons.map,
+      //   activeIcon: TreeIcons.so_map,
+      //   activeColor: lightOrangeColor,
+      // ): Scaffold(
+      //   backgroundColor: lightOrangeColor,
+      // ),
 
       // Страница профиля.
       BottomAppBarItem(

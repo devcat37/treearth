@@ -6,11 +6,13 @@ import 'package:flutter/material.dart';
 
 // Project imports:
 import 'package:treearth/domain/models/spot/plant_spot.dart';
+import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/static_map_at_object/static_map_at_object.dart';
-import 'package:treearth/presentation/global/tree_button/tree_button.dart';
 import 'package:treearth/presentation/global/tree_carousel/tree_carousel.dart';
+import 'package:treearth/presentation/global/tree_slider/tree_slider.dart';
+import 'package:treearth/presentation/pages/plant_page/plant_donation_page_view.dart';
 import 'package:treearth/presentation/widgets/plant_page/donators_list.dart';
 
 class PlantPageView extends StatelessWidget {
@@ -150,7 +152,11 @@ class PlantPageView extends StatelessWidget {
 
   Widget _buildDonateButton(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => showPopup(
+        context,
+        heightFactor: 0.7,
+        child: PlantDonationPage(),
+      ),
       child: Container(
         width: 100.0,
         height: 48.0,
@@ -168,6 +174,67 @@ class PlantPageView extends StatelessWidget {
     );
   }
 
+  Widget _buildSlider(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: sidePadding),
+      child: Column(
+        children: [
+          TreeSlider(
+            value: 0.4,
+            thumbColor: whiteColor,
+            thumbStripColor: lightGreyColor,
+          ),
+          const SizedBox(height: sidePadding12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Цель: ',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(color: greyTextColor, fontWeight: FontWeight.bold, letterSpacing: 1.1),
+                    ),
+                    TextSpan(
+                      text: '2000₽',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(color: darkGreyColor, fontFamily: 'Inter', fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Осталось: ',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(color: greyTextColor, fontWeight: FontWeight.bold, letterSpacing: 1.1),
+                    ),
+                    TextSpan(
+                      text: '${(2000 * (1 - 0.4)).toInt()}₽',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1!
+                          .copyWith(color: darkGreyColor, fontFamily: 'Inter', fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -178,16 +245,23 @@ class PlantPageView extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         children: [
           SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: sidePadding8),
-                _buildCarousel(context),
-                const SizedBox(height: sidePadding12),
-                _buildPlantTitle(context),
-                const SizedBox(height: sidePadding16),
-                _buildPlantSubtitle(context),
-              ],
+            child: SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: sidePadding8),
+                    _buildCarousel(context),
+                    const SizedBox(height: sidePadding12),
+                    _buildPlantTitle(context),
+                    const SizedBox(height: sidePadding24),
+                    _buildSlider(context),
+                    const SizedBox(height: sidePadding48),
+                    _buildPlantSubtitle(context),
+                  ],
+                ),
+              ),
             ),
           ),
           _buildBottomDonatePlate(context),

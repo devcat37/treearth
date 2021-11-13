@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
+import 'package:treearth/presentation/global/icons/tree_icons.dart';
+import 'package:treearth/presentation/global/tree_slider/tree_slider.dart';
 
 class PlantSpotContainer extends StatelessWidget {
   const PlantSpotContainer({
@@ -19,7 +21,7 @@ class PlantSpotContainer extends StatelessWidget {
   final PlantSpot plant;
   final Function()? onPressed;
 
-  static const defaultHeight = 140.0;
+  static const defaultHeight = 156.0;
 
   Future<String?> _getObjectLocationName() async {
     if (plant.placemark == null) {
@@ -81,6 +83,114 @@ class PlantSpotContainer extends StatelessWidget {
     );
   }
 
+  Widget _buildTopPart(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: sidePadding14, left: sidePadding14, right: sidePadding8),
+      child: Row(
+        children: [
+          Row(
+            children: [
+              _buildImage(context),
+              const SizedBox(width: sidePadding10),
+              _buildInformation(context),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSlider(BuildContext context) {
+    return Column(
+      children: [
+        TreeSlider(
+          value: 0.4,
+          thumbSize: 14.0,
+          thumbBorderColor: semiDarkGreenColor,
+          thumbStripColor: whiteColor,
+        ),
+        const SizedBox(height: sidePadding2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Цель: ',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(fontSize: 9.0, color: greyTextColor, fontWeight: FontWeight.bold, letterSpacing: 1.1),
+                  ),
+                  TextSpan(
+                    text: '2000₽',
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 9.0, color: darkGreyColor, fontFamily: 'Inter', fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              overflow: TextOverflow.fade,
+            ),
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Осталось: ',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(fontSize: 9.0, color: greyTextColor, fontWeight: FontWeight.bold, letterSpacing: 1.1),
+                  ),
+                  TextSpan(
+                    text: '${(2000 * (1 - 0.4)).toInt()}₽',
+                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                        fontSize: 9.0, color: darkGreyColor, fontFamily: 'Inter', fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+              overflow: TextOverflow.fade,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMoreButton(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          'Подробнее',
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(fontSize: 10.0, color: darkGreyColor, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(width: sidePadding2),
+        Icon(Icons.play_arrow_rounded, size: 18.0),
+      ],
+    );
+  }
+
+  Widget _buildBottomPart(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: sidePadding14, right: sidePadding8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: 170.0,
+            child: _buildSlider(context),
+          ),
+          _buildMoreButton(context),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -101,22 +211,15 @@ class PlantSpotContainer extends StatelessWidget {
               ),
               borderRadius: borderRadius12,
             ),
-            child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(top: sidePadding14, left: sidePadding14, right: sidePadding8),
-                child: Row(
-                  children: [
-                    Row(
-                      children: [
-                        _buildImage(context),
-                        const SizedBox(width: sidePadding10),
-                        _buildInformation(context),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildTopPart(context),
+                Spacer(),
+                _buildBottomPart(context),
+                Spacer(),
+              ],
+            ),
           ),
         ),
       ),

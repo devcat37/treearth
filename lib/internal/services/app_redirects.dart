@@ -17,10 +17,40 @@ import 'package:treearth/internal/pages/trash_page/trash_page.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/confirm_number_state/confirm_number_state.dart';
+import 'package:treearth/internal/utils/infrastructure.dart';
+import 'package:treearth/presentation/global/bottom_sheet_swiper/bottom_sheet_swiper.dart';
 
 bool canPop(BuildContext context) => Navigator.of(context).canPop();
 
 void pop(BuildContext context, [dynamic value]) => Navigator.of(context).pop(value);
+
+Future<T?> showPopup<T>(BuildContext context, {required Widget child, double heightFactor = 0.9}) =>
+    showModalBottomSheet(
+      context: context,
+      enableDrag: false,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(topLeft: radiusCircular32, topRight: radiusCircular32),
+      ),
+      builder: (context) => FractionallySizedBox(
+        heightFactor: heightFactor,
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(topLeft: radiusCircular32, topRight: radiusCircular32),
+          child: Stack(
+            children: [
+              child,
+              const Positioned(
+                top: sidePadding,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: BottomSheetSwiper(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
 
 void goToAuthorizationSplashPage(BuildContext context) =>
     Navigator.of(context).pushReplacementNamed(AuthorizationSplash.routeName);

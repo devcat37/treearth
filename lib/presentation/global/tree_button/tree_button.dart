@@ -12,6 +12,7 @@ class TreeButton extends StatelessWidget {
     this.width = defaultWidth,
     this.onPressed,
     this.style,
+    this.titleColor,
   })  : isOutlined = false,
         super(key: key);
 
@@ -22,6 +23,7 @@ class TreeButton extends StatelessWidget {
     this.width = defaultWidth,
     this.onPressed,
     this.style,
+    this.titleColor,
   })  : isOutlined = true,
         super(key: key);
 
@@ -34,6 +36,7 @@ class TreeButton extends StatelessWidget {
   final TextStyle? style;
   final Function()? onPressed;
   final bool isOutlined;
+  final Color? titleColor;
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +54,11 @@ class TreeButton extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: style?.copyWith(color: isOutlined ? Colors.black : buttonTextColor) ??
-                Theme.of(context).textTheme.button!.copyWith(color: isOutlined ? Colors.black : buttonTextColor),
+            style: style?.copyWith(color: titleColor ?? (isOutlined ? Colors.black : buttonTextColor)) ??
+                Theme.of(context)
+                    .textTheme
+                    .button!
+                    .copyWith(color: titleColor ?? (isOutlined ? Colors.black : buttonTextColor)),
           ),
         ),
       ),
