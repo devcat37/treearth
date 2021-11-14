@@ -72,7 +72,7 @@ class _PlantDonationPageState extends State<PlantDonationPage> {
                     .copyWith(color: greyTextColor, fontWeight: FontWeight.bold, letterSpacing: 1.1),
               ),
               TextSpan(
-                text: '${(5000 * _value).toInt()}₽',
+                text: '${(DonationState.maxDonationValue * _value).toInt()}₽',
                 style: Theme.of(context).textTheme.bodyText1!.copyWith(
                     color: darkGreyColor, fontFamily: 'Inter', fontWeight: FontWeight.bold, letterSpacing: 1.1),
               ),
@@ -84,6 +84,7 @@ class _PlantDonationPageState extends State<PlantDonationPage> {
           onChanged: (value) {
             setState(() {
               _value = value;
+              donationState.setDonationValue((DonationState.maxDonationValue * _value).toInt());
             });
           },
         ),
@@ -99,7 +100,7 @@ class _PlantDonationPageState extends State<PlantDonationPage> {
                   .copyWith(color: darkGreyColor, fontFamily: 'Inter', fontWeight: FontWeight.bold),
             ),
             Text(
-              '5000₽',
+              '${DonationState.maxDonationValue}₽',
               style: Theme.of(context)
                   .textTheme
                   .bodyText1!

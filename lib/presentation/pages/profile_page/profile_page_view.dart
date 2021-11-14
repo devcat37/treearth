@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
+import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/user_state/user_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
@@ -65,7 +66,7 @@ class _ProfilePageViewState extends State<ProfilePageView> {
 
   Widget _buildSettingsButton(BuildContext context) {
     return TreeIcon(
-      onPressed: () {},
+      onPressed: () => goToSettingsPage(context),
       icon: TreeIcons.settings,
     );
   }

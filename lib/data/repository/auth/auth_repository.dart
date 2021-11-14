@@ -28,7 +28,6 @@ class AuthRepository {
   Future<UserCredential?> signInWithGoogle() async {
     // Получение google пользователя с его access токеном.
     GoogleSignInAccount? googleAccount;
-    await _googleSignIn.signOut();
     googleAccount = await _googleSignIn.signIn();
 
     // Авторизация в Firebase.
@@ -91,5 +90,9 @@ class AuthRepository {
     } catch (e) {
       return LoadResult(exception: e);
     }
+  }
+
+  Future<void> logout() async {
+    _googleSignIn.signOut();
   }
 }

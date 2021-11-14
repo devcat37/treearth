@@ -77,7 +77,7 @@ class _TreeAppBarState extends State<TreeAppBar> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: (widget.actions ?? [])
-                .map((e) => Padding(padding: const EdgeInsets.only(left: sidePadding8), child: e))
+                .map((e) => Padding(padding: const EdgeInsets.only(left: sidePadding12), child: e))
                 .toList(),
           ),
         ],

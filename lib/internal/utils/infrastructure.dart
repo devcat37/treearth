@@ -103,6 +103,7 @@ const defaultKeyboardHeight = 290.0;
 // Border radiuses.
 final borderRadius2 = BorderRadius.circular(2.0);
 final borderRadius12 = BorderRadius.circular(12.0);
+final borderRadius16 = BorderRadius.circular(16.0);
 final borderRadius32 = BorderRadius.circular(32.0);
 
 // Radiuses.

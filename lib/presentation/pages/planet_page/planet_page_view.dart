@@ -89,6 +89,7 @@ class _PlanetPageViewState extends State<PlanetPageView> {
                   initialCameraPosition: state.cameraPosition,
                   onMapCreated: onMapCreated,
                   markers: snapshot.data ?? {},
+                  onLongPress: (position) => print(position),
                 ),
               );
             },

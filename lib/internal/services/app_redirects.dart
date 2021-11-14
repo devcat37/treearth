@@ -15,6 +15,7 @@ import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
 import 'package:treearth/internal/pages/plant_page/plant_page.dart';
+import 'package:treearth/internal/pages/settings_page/settings_page.dart';
 import 'package:treearth/internal/pages/trash_page/trash_page.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/service_locator.dart';
@@ -91,3 +92,5 @@ void goToPlantingPage(BuildContext context, PlantSpot plant) =>
 
 void goToTrashPage(BuildContext context, TrashSpot trash) =>
     Navigator.of(context).pushNamed(TrashPage.routeName, arguments: trash);
+
+void goToSettingsPage(BuildContext context) => Navigator.of(context).pushNamed(SettingsPage.routeName);

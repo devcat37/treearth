@@ -79,5 +79,11 @@ abstract class _AuthStateBase with Store {
     return false;
   }
 
-  Future<void> logout() async {}
+  Future<void> logout() async {
+    settings.accessToken = '';
+    settings.refreshToken = '';
+
+    userState.user = null;
+    authRepository.logout();
+  }
 }

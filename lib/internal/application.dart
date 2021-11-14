@@ -15,6 +15,7 @@ import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
 import 'package:treearth/internal/pages/plant_page/plant_page.dart';
+import 'package:treearth/internal/pages/settings_page/settings_page.dart';
 import 'package:treearth/internal/pages/splash_screen/splash_screen.dart';
 import 'package:treearth/internal/pages/trash_page/trash_page.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
@@ -88,6 +89,9 @@ class Application extends StatelessWidget {
                 trash: routeSettings.arguments as TrashSpot,
               ),
             );
+            break;
+          case SettingsPage.routeName:
+            route = MaterialPageRoute(builder: (context) => const SettingsPage());
             break;
         }
         return route;
