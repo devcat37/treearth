@@ -12,8 +12,10 @@ class TreeButton extends StatelessWidget {
     this.width = defaultWidth,
     this.onPressed,
     this.style,
+    this.color = semiDarkGreenColor,
     this.titleColor,
-  })  : isOutlined = false,
+    bool? isOutlined,
+  })  : isOutlined = isOutlined ?? false,
         super(key: key);
 
   const TreeButton.outlined({
@@ -23,6 +25,7 @@ class TreeButton extends StatelessWidget {
     this.width = defaultWidth,
     this.onPressed,
     this.style,
+    this.color = semiDarkGreenColor,
     this.titleColor,
   })  : isOutlined = true,
         super(key: key);
@@ -37,6 +40,7 @@ class TreeButton extends StatelessWidget {
   final Function()? onPressed;
   final bool isOutlined;
   final Color? titleColor;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +51,9 @@ class TreeButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: isOutlined ? whiteColor : semiDarkGreenColor,
+          color: isOutlined ? whiteColor : color,
           borderRadius: borderRadius12,
-          border: isOutlined ? Border.all(width: 1.0, color: semiDarkGreenColor) : null,
+          border: isOutlined ? Border.all(width: 1.0, color: color) : null,
         ),
         child: Center(
           child: Text(

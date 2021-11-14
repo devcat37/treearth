@@ -94,6 +94,7 @@ flutter:
     - assets/splash/  
     - assets/banners/
     - assets/map/
+    - assets/profile/smiles/
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

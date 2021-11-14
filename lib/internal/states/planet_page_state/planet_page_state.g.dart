@@ -78,6 +78,22 @@ mixin _$PlanetPageState on _PlanetPageStateBase, Store {
     });
   }
 
+  final _$_lastFetchPosititonAtom =
+      Atom(name: '_PlanetPageStateBase._lastFetchPosititon');
+
+  @override
+  LatLng get _lastFetchPosititon {
+    _$_lastFetchPosititonAtom.reportRead();
+    return super._lastFetchPosititon;
+  }
+
+  @override
+  set _lastFetchPosititon(LatLng value) {
+    _$_lastFetchPosititonAtom.reportWrite(value, super._lastFetchPosititon, () {
+      super._lastFetchPosititon = value;
+    });
+  }
+
   final _$changeSectionAsyncAction =
       AsyncAction('_PlanetPageStateBase.changeSection');
 

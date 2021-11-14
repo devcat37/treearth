@@ -21,7 +21,7 @@ class PlantSpotContainer extends StatelessWidget {
   final PlantSpot plant;
   final Function()? onPressed;
 
-  static const defaultHeight = 156.0;
+  static const defaultHeight = 112.0;
 
   Future<String?> _getObjectLocationName() async {
     if (plant.placemark == null) {
@@ -215,9 +215,9 @@ class PlantSpotContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildTopPart(context),
-                Spacer(),
-                _buildBottomPart(context),
-                Spacer(),
+                // Spacer(),
+                // _buildBottomPart(context),
+                // Spacer(),
               ],
             ),
           ),

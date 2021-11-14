@@ -1,39 +1,59 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:flutter_mobx/flutter_mobx.dart';
+
 // Project imports:
+import 'package:treearth/domain/models/spot/plant_spot.dart';
+import 'package:treearth/internal/services/service_locator.dart';
+import 'package:treearth/internal/states/donation_state/donation_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/tree_button/tree_button.dart';
 import 'package:treearth/presentation/global/tree_slider/tree_slider.dart';
 
 class PlantDonationPage extends StatefulWidget {
-  const PlantDonationPage({Key? key}) : super(key: key);
+  const PlantDonationPage({
+    Key? key,
+    required this.plant,
+  }) : super(key: key);
+
+  final PlantSpot plant;
 
   @override
   State<PlantDonationPage> createState() => _PlantDonationPageState();
 }
 
 class _PlantDonationPageState extends State<PlantDonationPage> {
+  DonationState get donationState => service<DonationState>();
+
   double _value = 0.0;
 
   Widget _buildOneTimeDonationButton(BuildContext context) {
-    return TreeButton(
-      onPressed: () {},
-      height: 40.0,
-      width: (MediaQuery.of(context).size.width - sidePadding * 3) / 2,
-      title: 'Единовременно',
-      style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
-      titleColor: whiteColor,
+    return Observer(
+      builder: (_) => TreeButton(
+        onPressed: () => donationState.changeDonationType(DonationType.oneTime),
+        height: 40.0,
+        width: (MediaQuery.of(context).size.width - sidePadding * 3) / 2,
+        title: 'Единовременно',
+        style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
+        titleColor: donationState.type == DonationType.oneTime ? whiteColor : blackColor,
+        isOutlined: donationState.type == DonationType.oneTime ? false : true,
+      ),
     );
   }
 
   Widget _buildMonthlyDonationButton(BuildContext context) {
-    return TreeButton.outlined(
-      onPressed: () {},
-      height: 40.0,
-      width: (MediaQuery.of(context).size.width - sidePadding * 3) / 2,
-      title: 'Ежемесячно',
-      style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
+    return Observer(
+      builder: (_) => TreeButton(
+        onPressed: () => donationState.changeDonationType(DonationType.monthly),
+        height: 40.0,
+        width: (MediaQuery.of(context).size.width - sidePadding * 3) / 2,
+        title: 'Ежемесячно',
+        style: Theme.of(context).textTheme.bodyText2!.copyWith(fontWeight: FontWeight.bold),
+        isOutlined: donationState.type == DonationType.monthly ? false : true,
+        titleColor: donationState.type == DonationType.monthly ? whiteColor : blackColor,
+      ),
     );
   }
 

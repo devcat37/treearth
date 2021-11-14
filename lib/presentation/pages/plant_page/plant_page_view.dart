@@ -152,11 +152,7 @@ class PlantPageView extends StatelessWidget {
 
   Widget _buildDonateButton(BuildContext context) {
     return InkWell(
-      onTap: () => showPopup(
-        context,
-        heightFactor: 0.7,
-        child: PlantDonationPage(),
-      ),
+      onTap: () => goToDonationPage(context, plant),
       child: Container(
         width: 100.0,
         height: 48.0,

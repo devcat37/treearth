@@ -70,9 +70,9 @@ class TreeNotification extends StatelessWidget {
       case n.NotificationType.positive:
         return TreeIcons.done;
       case n.NotificationType.warning:
-        return TreeIcons.lotus;
+        return TreeIcons.warning;
       case n.NotificationType.negative:
-        return TreeIcons.earth;
+        return TreeIcons.info;
     }
   }
 

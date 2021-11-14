@@ -19,8 +19,10 @@ import 'package:treearth/internal/pages/trash_page/trash_page.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/confirm_number_state/confirm_number_state.dart';
+import 'package:treearth/internal/states/donation_state/donation_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/bottom_sheet_swiper/bottom_sheet_swiper.dart';
+import 'package:treearth/presentation/pages/plant_page/plant_donation_page_view.dart';
 
 bool canPop(BuildContext context) => Navigator.of(context).canPop();
 
@@ -72,6 +74,15 @@ void goToBannerPage(BuildContext context, TreeBanner banner) =>
 
 Future<void> goToMainPage(BuildContext context) async =>
     await Navigator.of(context).pushReplacementNamed(Workspace.routeName);
+
+Future<void> goToDonationPage(BuildContext context, PlantSpot plant) async {
+  final state = DonationState();
+
+  service.registerSingleton<DonationState>(state);
+  await showPopup(context, heightFactor: 0.7, child: PlantDonationPage(plant: plant));
+
+  service.unregister(instance: state);
+}
 
 void goToNotificationsPage(BuildContext context) => Navigator.of(context).pushNamed(NotificationsPage.routeName);
 

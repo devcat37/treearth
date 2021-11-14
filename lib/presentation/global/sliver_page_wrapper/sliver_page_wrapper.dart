@@ -135,16 +135,9 @@ class _SliverPageWrapperState extends State<SliverPageWrapper> {
               ],
             ),
           ),
-          SliverFixedExtentList(
-            itemExtent: 50.0,
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: whiteColor,
-                  child: Text('List Item $index'),
-                );
-              },
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [],
             ),
           ),
         ],
