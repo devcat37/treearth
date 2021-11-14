@@ -5,6 +5,7 @@ const whiteColor = Color(0xFFFFFFFF);
 const blackColor = Color(0xFF000000);
 const lightGreyColor = Color(0xFFDADADA);
 const greyTextColor = Color(0xFFC6C6C6);
+const greyPTextColor = Color(0xFF898A8D);
 const lightGreyTextColor = Color(0xFFC4C4C4);
 const minimalLightGreyColor = Color(0xFFF5F5F5);
 const darkGreyTextColor = Color(0xFF666666);

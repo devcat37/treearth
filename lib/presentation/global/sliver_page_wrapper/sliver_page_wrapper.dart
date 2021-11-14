@@ -11,6 +11,7 @@ class SliverPageWrapper extends StatefulWidget {
     Key? key,
     required this.headerImage,
     required this.title,
+    required this.content,
   }) : super(key: key);
 
   static const defaultExpandedHeight = 250.0;
@@ -18,6 +19,7 @@ class SliverPageWrapper extends StatefulWidget {
 
   final String title;
   final String headerImage;
+  final Widget content;
 
   @override
   _SliverPageWrapperState createState() => _SliverPageWrapperState();
@@ -137,7 +139,7 @@ class _SliverPageWrapperState extends State<SliverPageWrapper> {
           ),
           SliverList(
             delegate: SliverChildListDelegate(
-              [],
+              [widget.content],
             ),
           ),
         ],
