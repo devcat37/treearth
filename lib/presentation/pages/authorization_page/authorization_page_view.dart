@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/auth_state/auth_state.dart';
+import 'package:treearth/internal/states/user_state/user_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/tree_button/tree_button.dart';
@@ -14,6 +15,7 @@ class AuthorizationPageView extends StatelessWidget {
   const AuthorizationPageView({Key? key}) : super(key: key);
 
   AuthState get authState => service<AuthState>();
+  UserState get userState => service<UserState>();
 
   Widget _buildButtons(BuildContext context) {
     return Padding(
@@ -25,7 +27,12 @@ class AuthorizationPageView extends StatelessWidget {
             onPressed: () async {
               final authResult = await authState.signInWithGoogle();
 
-              if (authResult) goToMainPage(context);
+              if (authResult) {
+                if (userState.user?.isNew ?? true)
+                  goToOnboardingPage(context);
+                else
+                  goToMainPage(context);
+              }
             },
             width: MediaQuery.of(context).size.width - sidePadding32 * 2,
             // TODO: Добавить икноку гугла в название.
@@ -41,7 +48,12 @@ class AuthorizationPageView extends StatelessWidget {
                 onSuccessfulConfirmation: (phone) async {
                   final authResult = await authState.signInWithPhoneNumber();
 
-                  if (authResult) goToMainPage(context);
+                  if (authResult) {
+                    if (userState.user?.isNew ?? true)
+                      goToOnboardingPage(context);
+                    else
+                      goToMainPage(context);
+                  }
                 },
               );
             },

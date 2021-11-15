@@ -33,20 +33,24 @@ class _SliverPageWrapperState extends State<SliverPageWrapper> {
   @override
   void initState() {
     _scrollController.addListener(() {
-      setState(() {
-        _lipOpacity = ((SliverPageWrapper.defaultExpandedHeight - kToolbarHeight - _scrollController.offset) /
-                SliverPageWrapper.defaultLipHeight)
-            .clamp(0, 1.0);
-      });
+      final lipOpacity = ((SliverPageWrapper.defaultExpandedHeight - kToolbarHeight - _scrollController.offset) /
+              SliverPageWrapper.defaultLipHeight)
+          .clamp(0, 1.0);
+
+      if (lipOpacity <= 1.0 && lipOpacity >= 0.0)
+        setState(() {
+          _lipOpacity = lipOpacity.toDouble();
+        });
 
       if (_scrollController.offset >= SliverPageWrapper.defaultExpandedHeight - kToolbarHeight) {
         setState(() {
           _showLip = false;
         });
       } else {
-        setState(() {
-          _showLip = true;
-        });
+        if (!_showLip)
+          setState(() {
+            _showLip = true;
+          });
       }
     });
 

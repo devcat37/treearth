@@ -16,12 +16,12 @@ import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/planet_page_state/planet_page_state.dart';
 import 'package:treearth/internal/states/spots_state/spots_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
-import 'package:treearth/internal/utils/utils.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/bottom_app_bar.dart' as b;
 import 'package:treearth/presentation/global/tab_bar/tree_tab_bar.dart';
 import 'package:treearth/presentation/global/tab_bar/tree_tab_bar_item.dart';
 import 'package:treearth/presentation/global/tab_bar_controller/tree_tab_bar_controller.dart';
+import 'package:treearth/presentation/global/tree_dialog/tree_dialog.dart';
 import 'package:treearth/presentation/widgets/planet_page/spots_carousel.dart';
 
 class PlanetPageView extends StatefulWidget {
@@ -36,6 +36,14 @@ class _PlanetPageViewState extends State<PlanetPageView> {
   SpotsState get spotsState => service<SpotsState>();
 
   final TreeTabBarController _tabController = TreeTabBarController();
+
+  Future<void> showCreateNewSpotDialog(LatLng position) async {
+    showDialog(
+      barrierColor: Colors.transparent,
+      context: context,
+      builder: (context) => TreeDialog.newPlantSpot(),
+    );
+  }
 
   @override
   void initState() {
@@ -73,7 +81,6 @@ class _PlanetPageViewState extends State<PlanetPageView> {
     return Scaffold(
       appBar: TreeAppBar(
         title: 'Планета',
-        canPop: false,
       ),
       body: Stack(
         children: [
@@ -89,7 +96,7 @@ class _PlanetPageViewState extends State<PlanetPageView> {
                   initialCameraPosition: state.cameraPosition,
                   onMapCreated: onMapCreated,
                   markers: snapshot.data ?? {},
-                  onLongPress: (position) => print(position),
+                  onLongPress: showCreateNewSpotDialog,
                 ),
               );
             },

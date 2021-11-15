@@ -13,6 +13,7 @@ import 'package:treearth/internal/pages/authorization_splash/authorization_splas
 import 'package:treearth/internal/pages/banner_page/banner_page.dart';
 import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
+import 'package:treearth/internal/pages/onboarding_page/onboarding_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
 import 'package:treearth/internal/pages/plant_page/plant_page.dart';
 import 'package:treearth/internal/pages/settings_page/settings_page.dart';
@@ -52,6 +53,9 @@ class Application extends StatelessWidget {
             break;
           case AuthorizationPage.routeName:
             route = MaterialPageRoute(builder: (context) => const AuthorizationPage());
+            break;
+          case OnboardingPage.routeName:
+            route = MaterialPageRoute(builder: (context) => const OnboardingPage());
             break;
           case Workspace.routeName:
             route = MaterialPageRoute(builder: (context) => const Workspace());

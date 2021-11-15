@@ -36,6 +36,7 @@ class AuthRepository {
         GoogleAuthProvider.credential(accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
     final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
+    print(userCredential.user);
     // Возвращается ID пользователя.
     return userCredential;
   }

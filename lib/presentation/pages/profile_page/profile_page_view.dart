@@ -127,7 +127,6 @@ class _ProfilePageViewState extends State<ProfilePageView> {
     return Scaffold(
       appBar: TreeAppBar(
         title: 'Профиль',
-        canPop: false,
         actions: [
           userState.user!.isVolunteer ? _buildVolunteerPlate(context) : _buildBecomeVolunteerPlate(context),
           _buildSettingsButton(context),

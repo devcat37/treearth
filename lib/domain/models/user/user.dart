@@ -10,10 +10,12 @@ class User extends _UserBase with _$User {
     required String id,
     required String uid,
     bool? isVolunteer = false,
+    bool? isNew = true,
   }) : super(
           id: id,
           uid: uid,
           isVolunteer: isVolunteer ?? false,
+          isNew: isNew ?? true,
         );
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
@@ -25,6 +27,7 @@ abstract class _UserBase with Store {
     required this.id,
     required this.uid,
     this.isVolunteer = false,
+    this.isNew = true,
   });
 
   /// ID пользователя в базе данных.
@@ -36,4 +39,7 @@ abstract class _UserBase with Store {
 
   /// Есть ли у пользователя привилегии волонтерства.
   final bool isVolunteer;
+
+  /// Первый раз пользователь авторизировался или нет.
+  final bool isNew;
 }

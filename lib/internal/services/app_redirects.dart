@@ -12,7 +12,9 @@ import 'package:treearth/internal/pages/authorization_page/authorization_page.da
 import 'package:treearth/internal/pages/authorization_splash/authorization_splash.dart';
 import 'package:treearth/internal/pages/banner_page/banner_page.dart';
 import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
+import 'package:treearth/internal/pages/create_spot_page/create_spot_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
+import 'package:treearth/internal/pages/onboarding_page/onboarding_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
 import 'package:treearth/internal/pages/plant_page/plant_page.dart';
 import 'package:treearth/internal/pages/settings_page/settings_page.dart';
@@ -60,7 +62,8 @@ Future<T?> showPopup<T>(BuildContext context, {required Widget child, double hei
 void goToAuthorizationSplashPage(BuildContext context) =>
     Navigator.of(context).pushReplacementNamed(AuthorizationSplash.routeName);
 
-void goToAuthorizationPage(BuildContext context) => Navigator.of(context).pushNamed(AuthorizationPage.routeName);
+Future<void> goToAuthorizationPage(BuildContext context) =>
+    Navigator.of(context).pushNamedAndRemoveUntil(AuthorizationPage.routeName, (_) => false);
 
 Future<T?> goToPhoneNumberPage<T>(BuildContext context, {Function(PhoneNumber)? onSuccessfulConfirmation}) async =>
     await Navigator.of(context).pushNamed(PhoneNumberPage.routeName, arguments: onSuccessfulConfirmation);
@@ -73,8 +76,10 @@ Future<bool?> goToConfirmNumberPage<bool>(BuildContext context, PhoneNumber phon
 void goToBannerPage(BuildContext context, TreeBanner banner) =>
     Navigator.of(context).pushNamed(BannerPage.routeName, arguments: banner);
 
+void goToOnboardingPage(BuildContext context) => Navigator.of(context).pushReplacementNamed(OnboardingPage.routeName);
+
 Future<void> goToMainPage(BuildContext context) async =>
-    await Navigator.of(context).pushReplacementNamed(Workspace.routeName);
+    await Navigator.of(context).pushNamedAndRemoveUntil(Workspace.routeName, (_) => false);
 
 Future<void> goToDonationPage(BuildContext context, PlantSpot plant) async {
   final state = DonationState();
@@ -94,3 +99,5 @@ void goToTrashPage(BuildContext context, TrashSpot trash) =>
     Navigator.of(context).pushNamed(TrashPage.routeName, arguments: trash);
 
 void goToSettingsPage(BuildContext context) => Navigator.of(context).pushNamed(SettingsPage.routeName);
+
+void goToCreateSpotPage(BuildContext context) => Navigator.of(context).pushNamed(CreateSpotPage.routeName);

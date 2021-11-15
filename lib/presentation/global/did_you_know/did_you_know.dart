@@ -21,7 +21,7 @@ class DidYouKnow extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: sidePadding24 * 2),
         child: Text(
-          'Что деревья выделяют фитонциды',
+          'Что деревья могут выделять фитонциды',
           style: Theme.of(context).textTheme.subtitle1,
           textAlign: TextAlign.center,
         ),

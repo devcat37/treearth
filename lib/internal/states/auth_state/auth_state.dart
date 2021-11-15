@@ -1,7 +1,9 @@
 // Dart imports:
 import 'dart:async';
+import 'dart:convert';
 
 // Package imports:
+import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:mobx/mobx.dart';
 
 // Project imports:
@@ -47,6 +49,8 @@ abstract class _AuthStateBase with Store {
   Future<bool> authorize({String? userId, bool? isNew = false}) async {
     // Берем токен из локального хранилища если он не был передан как аргумент (или равен null).
     userId ??= settings.userId;
+    // Если это не быстрая авторизация, то нужно создать временный access токен, чтобы сервер понял, что запрос защищенный.
+    if (settings.accessToken.isEmpty) settings.accessToken = generateAccessToken(userId);
     // Первая проверка. Если нет токена, то пользователь точно не авторизован.
     if (userId.isEmpty) return false;
 
@@ -82,8 +86,15 @@ abstract class _AuthStateBase with Store {
   Future<void> logout() async {
     settings.accessToken = '';
     settings.refreshToken = '';
+    settings.userId = '';
 
     userState.user = null;
     authRepository.logout();
+  }
+
+  /// Создание access токена для авторизации.
+  String generateAccessToken(String userId) {
+    final token = JWT({'userId': userId}).sign(SecretKey(Settings.JWT_ACCESS_SECRET));
+    return token;
   }
 }

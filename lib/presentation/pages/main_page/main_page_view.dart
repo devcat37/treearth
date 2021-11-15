@@ -71,7 +71,6 @@ class _MainPageViewState extends State<MainPageView> {
         actions: [
           _buildNotificationsButton(context),
         ],
-        canPop: false,
       ),
       body: SingleChildScrollView(
         child: Container(

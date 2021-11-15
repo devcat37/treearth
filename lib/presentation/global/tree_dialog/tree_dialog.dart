@@ -33,6 +33,17 @@ class TreeDialog extends StatelessWidget {
         cancelButtonTitle = null,
         type = DialogType.multipleButton;
 
+  const TreeDialog.newPlantSpot({
+    Key? key,
+    this.onSuccessPressed,
+    this.onCancelPressed,
+  })  : title = 'Создание заявки',
+        content =
+            'Вы можете создать заявку на озеленение в этой точке. Для этого вам нужно будет прикрепить фотографию местности и выбрать растение, которое вы желаете посадить',
+        successButtonTitle = 'Создать заявку',
+        cancelButtonTitle = null,
+        type = DialogType.multipleButton;
+
   final String title;
   final String content;
 
@@ -46,7 +57,7 @@ class TreeDialog extends StatelessWidget {
 
   Widget _buildButtons(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final buttonWidth = (constraints.maxWidth - sidePadding) / 2;
+      final buttonWidth = (constraints.maxWidth - sidePadding12) / 2;
       return Container(
         height: 40.0,
         child: Row(

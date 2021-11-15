@@ -58,11 +58,11 @@ class TreeButton extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: style?.copyWith(color: titleColor ?? (isOutlined ? Colors.black : buttonTextColor)) ??
+            style: style?.copyWith(color: titleColor ?? (isOutlined ? Colors.black : whiteColor)) ??
                 Theme.of(context)
                     .textTheme
                     .button!
-                    .copyWith(color: titleColor ?? (isOutlined ? Colors.black : buttonTextColor)),
+                    .copyWith(color: titleColor ?? (isOutlined ? Colors.black : whiteColor)),
           ),
         ),
       ),
