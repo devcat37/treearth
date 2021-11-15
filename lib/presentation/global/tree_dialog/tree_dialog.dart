@@ -20,6 +20,7 @@ class TreeDialog extends StatelessWidget {
     this.cancelButtonTitle,
     this.onSuccessPressed,
     this.onCancelPressed,
+    this.themeColor,
     this.type = DialogType.multipleButton,
   }) : super(key: key);
 
@@ -31,12 +32,14 @@ class TreeDialog extends StatelessWidget {
         content = 'Вы действительно хотите выйти из аккаунта?',
         successButtonTitle = 'Выйти',
         cancelButtonTitle = null,
+        themeColor = null,
         type = DialogType.multipleButton;
 
   const TreeDialog.newPlantSpot({
     Key? key,
     this.onSuccessPressed,
     this.onCancelPressed,
+    this.themeColor,
   })  : title = 'Создание заявки',
         content =
             'Вы можете создать заявку на озеленение в этой точке. Для этого вам нужно будет прикрепить фотографию местности и выбрать растение, которое вы желаете посадить',
@@ -54,6 +57,8 @@ class TreeDialog extends StatelessWidget {
 
   final Function()? onSuccessPressed;
   final Function()? onCancelPressed;
+
+  final Color? themeColor;
 
   Widget _buildButtons(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
@@ -75,6 +80,7 @@ class TreeDialog extends StatelessWidget {
                 height: 40.0,
                 width: buttonWidth,
                 title: cancelButtonTitle ?? 'Отмена',
+                color: themeColor,
               ),
             TreeButton(
               onPressed: () {
@@ -87,6 +93,7 @@ class TreeDialog extends StatelessWidget {
               width: buttonWidth,
               title: successButtonTitle ?? 'Да',
               titleColor: whiteColor,
+              color: themeColor,
             )
           ],
         ),

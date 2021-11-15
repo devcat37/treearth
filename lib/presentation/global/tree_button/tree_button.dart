@@ -40,7 +40,7 @@ class TreeButton extends StatelessWidget {
   final Function()? onPressed;
   final bool isOutlined;
   final Color? titleColor;
-  final Color color;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +51,9 @@ class TreeButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          color: isOutlined ? whiteColor : color,
+          color: isOutlined ? whiteColor : color ?? semiDarkGreenColor,
           borderRadius: borderRadius12,
-          border: isOutlined ? Border.all(width: 1.0, color: color) : null,
+          border: isOutlined ? Border.all(width: 1.0, color: color ?? semiDarkGreenColor) : null,
         ),
         child: Center(
           child: Text(

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:phone_number/phone_number.dart';
 
 // Project imports:
@@ -12,6 +13,7 @@ import 'package:treearth/internal/pages/authorization_page/authorization_page.da
 import 'package:treearth/internal/pages/authorization_splash/authorization_splash.dart';
 import 'package:treearth/internal/pages/banner_page/banner_page.dart';
 import 'package:treearth/internal/pages/confirm_number_page/confirm_number_page.dart';
+import 'package:treearth/internal/pages/create_spot_page/create_spot_page.dart';
 import 'package:treearth/internal/pages/notifications_page/notifications_page.dart';
 import 'package:treearth/internal/pages/onboarding_page/onboarding_page.dart';
 import 'package:treearth/internal/pages/phone_number_page/phone_number_page.dart';
@@ -93,6 +95,9 @@ class Application extends StatelessWidget {
                 trash: routeSettings.arguments as TrashSpot,
               ),
             );
+            break;
+          case CreateSpotPage.routeName:
+            route = MaterialPageRoute(builder: (context) => const CreateSpotPage());
             break;
           case SettingsPage.routeName:
             route = MaterialPageRoute(builder: (context) => const SettingsPage());

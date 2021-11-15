@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:phone_number/phone_number.dart';
 
 // Project imports:
@@ -22,9 +23,11 @@ import 'package:treearth/internal/pages/trash_page/trash_page.dart';
 import 'package:treearth/internal/pages/workspace/workspace.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/confirm_number_state/confirm_number_state.dart';
+import 'package:treearth/internal/states/create_spot_state/create_spot_state.dart';
 import 'package:treearth/internal/states/donation_state/donation_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/bottom_sheet_swiper/bottom_sheet_swiper.dart';
+import 'package:treearth/presentation/global/static_map_at_object/static_map_at_object.dart';
 import 'package:treearth/presentation/pages/plant_page/plant_donation_page_view.dart';
 
 bool canPop(BuildContext context) => Navigator.of(context).canPop();
@@ -100,4 +103,11 @@ void goToTrashPage(BuildContext context, TrashSpot trash) =>
 
 void goToSettingsPage(BuildContext context) => Navigator.of(context).pushNamed(SettingsPage.routeName);
 
-void goToCreateSpotPage(BuildContext context) => Navigator.of(context).pushNamed(CreateSpotPage.routeName);
+Future<void> goToCreateSpotPage(BuildContext context, {required LatLng position, required MapObjectType type}) async {
+  final state = CreateSpotState(position: position, type: type);
+
+  service.registerSingleton<CreateSpotState>(state);
+  await Navigator.of(context).pushNamed(CreateSpotPage.routeName);
+
+  service.unregister(instance: state);
+}

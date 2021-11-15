@@ -18,21 +18,17 @@ class TrashPageView extends StatelessWidget {
   final TrashSpot trash;
 
   Widget _buildImage(BuildContext context) {
-    return Stack(
-      children: [
-        Hero(
-          tag: trash.id,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: borderRadius12,
-              image: DecorationImage(
-                image: NetworkImage(trash.imageUrl),
-                fit: BoxFit.cover,
-              ),
-            ),
+    return Hero(
+      tag: trash.id,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: borderRadius12,
+          image: DecorationImage(
+            image: NetworkImage(trash.imageUrl),
+            fit: BoxFit.cover,
           ),
         ),
-      ],
+      ),
     );
   }
 

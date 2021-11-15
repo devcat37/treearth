@@ -24,6 +24,20 @@ mixin _$DonationState on _DonationStateBase, Store {
     });
   }
 
+  final _$_DonationStateBaseActionController =
+      ActionController(name: '_DonationStateBase');
+
+  @override
+  void changeDonationType(DonationType type) {
+    final _$actionInfo = _$_DonationStateBaseActionController.startAction(
+        name: '_DonationStateBase.changeDonationType');
+    try {
+      return super.changeDonationType(type);
+    } finally {
+      _$_DonationStateBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''

@@ -11,6 +11,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 // Project imports:
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/domain/models/spot/spot.dart';
+import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/planet_page_state/planet_page_state.dart';
@@ -18,6 +19,7 @@ import 'package:treearth/internal/states/spots_state/spots_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/bottom_app_bar/bottom_app_bar.dart' as b;
+import 'package:treearth/presentation/global/static_map_at_object/static_map_at_object.dart';
 import 'package:treearth/presentation/global/tab_bar/tree_tab_bar.dart';
 import 'package:treearth/presentation/global/tab_bar/tree_tab_bar_item.dart';
 import 'package:treearth/presentation/global/tab_bar_controller/tree_tab_bar_controller.dart';
@@ -41,7 +43,15 @@ class _PlanetPageViewState extends State<PlanetPageView> {
     showDialog(
       barrierColor: Colors.transparent,
       context: context,
-      builder: (context) => TreeDialog.newPlantSpot(),
+      builder: (context) => TreeDialog.newPlantSpot(
+        themeColor: state.section == PlanetPageSection.plants ? semiDarkGreenColor : semiDarkOrangeColor,
+        onSuccessPressed: () {
+          pop(context);
+
+          final type = state.section == PlanetPageSection.plants ? MapObjectType.plant : MapObjectType.trash;
+          goToCreateSpotPage(context, position: position, type: type);
+        },
+      ),
     );
   }
 
