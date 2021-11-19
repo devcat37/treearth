@@ -7,7 +7,6 @@ import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/auth_state/auth_state.dart';
 import 'package:treearth/internal/states/user_state/user_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
-import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/tree_button/tree_button.dart';
 import 'package:treearth/presentation/global/tree_input/tree_input.dart';
 

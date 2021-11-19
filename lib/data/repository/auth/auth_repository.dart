@@ -47,7 +47,7 @@ class AuthRepository {
     try {
       // Тело запроса.
       final Map<String, dynamic> data = {
-        'uid': userId,
+        Settings.userIdKey: userId,
       };
 
       final Map<String, dynamic> result =
@@ -65,7 +65,7 @@ class AuthRepository {
     try {
       // Тело запроса.
       final Map<String, dynamic> data = {
-        'uid': userId,
+        Settings.userIdKey: userId,
       };
 
       final Map<String, dynamic> result =

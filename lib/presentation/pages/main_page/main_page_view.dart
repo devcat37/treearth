@@ -9,6 +9,7 @@ import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/states/banners_state/banners_state.dart';
+import 'package:treearth/internal/states/goals_and_results_state/goals_and_results_state.dart';
 import 'package:treearth/internal/states/notifications_state/notifications_state.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
@@ -19,6 +20,7 @@ import 'package:treearth/presentation/widgets/main_page/banners/tree_banner_widg
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banners.dart';
 import 'package:treearth/presentation/widgets/main_page/banners/tree_banners_skeleton.dart';
 import 'package:treearth/presentation/widgets/main_page/goals_and_results/goals_and_results.dart';
+import 'package:treearth/presentation/widgets/main_page/goals_and_results/goals_and_results_skeleton.dart';
 
 class MainPageView extends StatefulWidget {
   const MainPageView({Key? key}) : super(key: key);
@@ -29,6 +31,7 @@ class MainPageView extends StatefulWidget {
 
 class _MainPageViewState extends State<MainPageView> {
   BannersState get bannersState => service<BannersState>();
+  GoalsAndResultsState get goalsAndResultsState => service<GoalsAndResultsState>();
   NotificationsState get notificationsState => service<NotificationsState>();
 
   Widget _buildNotificationsButton(BuildContext context) {
@@ -60,7 +63,14 @@ class _MainPageViewState extends State<MainPageView> {
   }
 
   Widget _buildGoalsAndResults(BuildContext context) {
-    return GoalsAndResults();
+    return Observer(builder: (context) {
+      if (goalsAndResultsState.isLoading) return const GoalsAndResultsSkeleton();
+      final goalsAndResults = goalsAndResultsState.goalsAndResults;
+
+      return GoalsAndResults(
+        goalsAndResults: goalsAndResults,
+      );
+    });
   }
 
   @override

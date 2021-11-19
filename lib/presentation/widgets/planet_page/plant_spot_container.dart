@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
-import 'package:treearth/presentation/global/icons/tree_icons.dart';
 import 'package:treearth/presentation/global/tree_slider/tree_slider.dart';
 
 class PlantSpotContainer extends StatelessWidget {
@@ -174,22 +173,22 @@ class PlantSpotContainer extends StatelessWidget {
     );
   }
 
-  Widget _buildBottomPart(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: sidePadding14, right: sidePadding8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            width: 170.0,
-            child: _buildSlider(context),
-          ),
-          _buildMoreButton(context),
-        ],
-      ),
-    );
-  }
+  // Widget _buildBottomPart(BuildContext context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.only(left: sidePadding14, right: sidePadding8),
+  //     child: Row(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         SizedBox(
+  //           width: 170.0,
+  //           child: _buildSlider(context),
+  //         ),
+  //         _buildMoreButton(context),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

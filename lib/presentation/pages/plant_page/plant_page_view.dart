@@ -12,7 +12,6 @@ import 'package:treearth/presentation/global/app_bar/tree_app_bar.dart';
 import 'package:treearth/presentation/global/static_map_at_object/static_map_at_object.dart';
 import 'package:treearth/presentation/global/tree_carousel/tree_carousel.dart';
 import 'package:treearth/presentation/global/tree_slider/tree_slider.dart';
-import 'package:treearth/presentation/pages/plant_page/plant_donation_page_view.dart';
 import 'package:treearth/presentation/widgets/plant_page/donators_list.dart';
 
 class PlantPageView extends StatelessWidget {

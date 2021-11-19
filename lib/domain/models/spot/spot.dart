@@ -6,7 +6,6 @@ import 'package:json_annotation/json_annotation.dart';
 // Project imports:
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/domain/models/spot/trash_spot.dart';
-import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/services/settings.dart';
 import 'package:treearth/internal/utils/utils.dart';
 
@@ -16,10 +15,7 @@ abstract class Spot {
     required this.position,
     this.imageUrl = defaultPlantImage,
     this.placemark,
-  }) {
-    // Устанавливаем адресс объекта при инициализации.
-    // adressByLocation(position).then((value) => placemark = value);
-  }
+  });
 
   factory Spot.fromJson(Map<String, dynamic> json) {
     if (json['type'] == 'PLANT')

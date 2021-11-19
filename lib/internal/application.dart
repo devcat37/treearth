@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:phone_number/phone_number.dart';
 
 // Project imports:

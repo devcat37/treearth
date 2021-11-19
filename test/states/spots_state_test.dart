@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // Project imports:
 import 'package:treearth/domain/models/spot/plant_spot.dart';
+import 'package:treearth/domain/models/spot/spot.dart';
 import 'package:treearth/domain/models/spot/trash_spot.dart';
 import 'package:treearth/internal/utils/utils.dart';
 
@@ -13,6 +14,7 @@ const plantSpotJson = {
     'latitude': 56.01323452,
     'longtitude': 18.0435367,
   },
+  'type': 'PLANT',
   'title': 'Пихта',
   'imageUrl': defaultPlantImage,
 };
@@ -23,6 +25,7 @@ const trashSpotJson = {
     'latitude': 56.01323452,
     'longtitude': 18.0435367,
   },
+  'type': 'TRASH',
   'imageUrl': defaultTrashImage,
 };
 
@@ -39,6 +42,12 @@ void main() {
       final trash = TrashSpot.fromJson(plantSpotJson);
 
       expect(trash.position.runtimeType, LatLng);
+    });
+
+    test('Проверка парсинга через Spot', () {
+      final trash = Spot.fromJson(trashSpotJson);
+
+      expect(trash.runtimeType, TrashSpot);
     });
   });
 }

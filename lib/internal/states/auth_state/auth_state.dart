@@ -1,6 +1,5 @@
 // Dart imports:
 import 'dart:async';
-import 'dart:convert';
 
 // Package imports:
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
@@ -10,6 +9,7 @@ import 'package:mobx/mobx.dart';
 import 'package:treearth/data/models/auth_result_data.dart';
 import 'package:treearth/data/repository/auth/auth_repository.dart';
 import 'package:treearth/domain/repository/load_result.dart';
+import 'package:treearth/internal/services/helpers.dart';
 import 'package:treearth/internal/services/service_locator.dart';
 import 'package:treearth/internal/services/settings.dart';
 import 'package:treearth/internal/states/user_state/user_state.dart';
@@ -50,7 +50,8 @@ abstract class _AuthStateBase with Store {
     // Берем токен из локального хранилища если он не был передан как аргумент (или равен null).
     userId ??= settings.userId;
     // Если это не быстрая авторизация, то нужно создать временный access токен, чтобы сервер понял, что запрос защищенный.
-    if (settings.accessToken.isEmpty) settings.accessToken = generateAccessToken(userId);
+    if (settings.accessToken.isEmpty || hasTokenExpired(settings.accessToken))
+      settings.accessToken = generateAccessToken(userId);
     // Первая проверка. Если нет токена, то пользователь точно не авторизован.
     if (userId.isEmpty) return false;
 

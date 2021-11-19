@@ -15,7 +15,7 @@ class User extends _UserBase with _$User {
           id: id,
           uid: uid,
           isVolunteer: isVolunteer ?? false,
-          isNew: isNew ?? true,
+          isNew: isNew ?? false,
         );
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

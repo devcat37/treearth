@@ -89,7 +89,7 @@ double distanceBetweenPoints(LatLng first, LatLng second) {
 
 bool hasTokenExpired(String token) {
   try {
-    final res = JWT.verify(token, SecretKey(Settings.JWT_ACCESS_SECRET));
+    JWT.verify(token, SecretKey(Settings.JWT_ACCESS_SECRET));
     return false;
   } on JWTError {
     return true;

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'package:treearth/domain/mocks/mock_uuid.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/app_bar_back.dart';
 

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:treearth/internal/services/app_redirects.dart';
 import 'package:treearth/internal/utils/infrastructure.dart';
 import 'package:treearth/presentation/global/app_bar/app_bar_back.dart';
-import 'package:treearth/presentation/global/icons/tree_icons.dart';
 
 class TreeAppBar extends StatefulWidget implements PreferredSizeWidget {
   const TreeAppBar({

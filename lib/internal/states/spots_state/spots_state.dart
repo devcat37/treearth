@@ -4,7 +4,6 @@ import 'package:mobx/mobx.dart';
 
 // Project imports:
 import 'package:treearth/data/repository/spots/spots_repository.dart';
-import 'package:treearth/domain/mocks/mock_spots.dart';
 import 'package:treearth/domain/models/spot/plant_spot.dart';
 import 'package:treearth/domain/models/spot/spot.dart';
 import 'package:treearth/domain/models/spot/trash_spot.dart';

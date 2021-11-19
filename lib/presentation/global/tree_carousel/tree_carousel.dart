@@ -25,8 +25,6 @@ class TreeCarousel extends StatefulWidget {
 class _TreeCarouselState extends State<TreeCarousel> {
   final PageController controller = PageController();
 
-  int _currentIndex = 0;
-
   Widget _buildCarousel(BuildContext context) {
     return AspectRatio(
       aspectRatio: 1.5,

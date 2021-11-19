@@ -10,6 +10,7 @@ const lightGreyTextColor = Color(0xFFC4C4C4);
 const minimalLightGreyColor = Color(0xFFF5F5F5);
 const darkGreyTextColor = Color(0xFF666666);
 const surfaceGreyColor = Color(0xFFF9F9F9);
+const lightestGreyColor = Color(0xFFFAFAFA);
 
 const lightGreenColor = Color(0xFFA6D331);
 const lightYellowColor = Color(0xFFFAE315);
@@ -102,6 +103,7 @@ const defaultKeyboardHeight = 290.0;
 
 // Border radiuses.
 final borderRadius2 = BorderRadius.circular(2.0);
+final borderRadius6 = BorderRadius.circular(6.0);
 final borderRadius12 = BorderRadius.circular(12.0);
 final borderRadius16 = BorderRadius.circular(16.0);
 final borderRadius32 = BorderRadius.circular(32.0);

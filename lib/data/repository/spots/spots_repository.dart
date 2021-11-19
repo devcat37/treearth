@@ -1,6 +1,3 @@
-// Package imports:
-import 'package:dio/dio.dart';
-
 // Project imports:
 import 'package:treearth/data/api/api_client.dart';
 import 'package:treearth/domain/models/spot/spot.dart';
